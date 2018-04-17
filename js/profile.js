@@ -5,3 +5,8 @@ $(window).resize(function() {
 		alert("Please enlargen your browser!");
 	}
 });
+
+// $(document).ready(function() {
+// 	document.getElementById("Login-Main").display = "block";
+
+// });

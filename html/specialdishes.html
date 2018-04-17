@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  
+  <link href="https://fonts.googleapis.com/css?family=Josefin+Sans" rel="stylesheet">
+  <link rel="stylesheet" href="../data/css/specialdishes.css">
+  <link rel="stylesheet" href="../data/css/search-style.css"  type="text/css"/>
+	<script src="https://code.jquery.com/jquery-3.1.1.min.js"
+  integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
+  crossorigin="anonymous"></script>
+
+
+</head>
+
+
+<body>
+<!-- nav bar -->
+<div id="nav_bar">
+      <a href="" id="logo"> MealMaker </a>
+
+      <div id="search_bar">
+        <img id="search_icon" alt="search button" src="../data/images/search_icon.png"/>
+        <input id="search_box" type="text" placeholder="Search for ingredients, recipe names...">
+      </div>
+
+      <ul class="nav_buttons">
+      
+        <li> <a href="" id="create_recipe"><img id="add_icon" alt="add button" src="../data/images/add_icon.png"/>
+         <h4 id="new_recipe" > NEW RECIPE </h4></a> </li>
+      
+    
+        <li> <a href="" id="inspirations"> <img id="inspo_icon" alt="inspiration icon" src="../data/images/inspo_icon.png"/>
+        <h4 id="recipe_inspo"> RECIPE INSPIRATIONS </h4></a> </li>
+      
+
+        <li> <a href="profile.html" ><img id="profile_icon" alt="user's image" src="../data/images/default-user.png"/> </a></li>
+       </ul>
+    </div>
+
+
+<!-- dinners for the week block -->
+<div id="dinnerFTW-container">
+  <div class="slideshow-container">
+
+    <div class="mySlides">
+      <img id="dinnerFTWpic" class="dinnerFTWpic1" src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6d/Good_Food_Display_-_NCI_Visuals_Online.jpg/1200px-Good_Food_Display_-_NCI_Visuals_Online.jpg" width=100%>
+    </div>
+
+    <div class="mySlides">
+      <img id="dinnerFTWpic" class="dinnerFTWpic2" src="http://images.mentalfloss.com/sites/default/files/styles/mf_image_16x9/public/521724-istock-545286388.jpg?itok=AF_X9rNF&resize=1100x619" width=100%>
+
+    </div>
+
+    <div class="mySlides">
+      <img id="dinnerFTWpic" class="dinnerFTWpic3" src="http://i2.cdn.turner.com/money/dam/assets/141224105650-chinese-food-xmas-1024x576.jpg"  width=100%>
+    </div>
+
+    <div id="dinnerFTWtext-container">
+      <h1 id="dinnerFTWtitle">Dinners for the Week</h1>
+      <h3 id="dinnerFTWtext">efwefwf wefqwefqwdfsdafcasdfaewfqwefwqef wdwqdwefwefwefqwfqwefqwefqwsdfawdfqwefqwefqwefqwefdqwef fwefwefwefwefwef </h3>
+    </div>
+
+    <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+    <a class="next" onclick="plusSlides(1)">&#10095;</a>
+
+  </div>
+</div>
+
+
+<!-- seasonal recipes -->
+<div id="seasonal-container-all">
+  <div id="seasonal-container">
+    <!-- title of season(al) recipes -->
+    <div id="seasonal-title-container">
+        <h1 id="seasonal-title">St. Patrick's Day Recipes</h2>
+    </div>
+    <!-- main dishes -->
+    <div id="main-dishes-container">
+      <div id="main-dishes">
+        <h1 style="color: black">this is where the recipes go!</h1>
+        <ul id="main-dishes-list">
+        </ul>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<script>
+
+var slideIndex = 1;
+
+$(document).ready(function() {
+  var height = $(window).height();
+  var width = $(window).width();
+  $('#dinnerFTW-container').css({'height': width * .5});
+  $('.dinnerFTWpic' + slideIndex).css({'height': width * .5});
+});
+
+$(window).resize(function() {
+  var height = $(window).height();
+  var width = $(window).width();
+  $('#dinnerFTW-container').css({'height': width * .5});
+  $('.dinnerFTWpic' + slideIndex).css({'height': width * .5});
+});
+
+showSlides(slideIndex);
+
+function plusSlides(n) {
+  if(slideIndex == 1 && n == -1){
+    console.log("hey");
+    applyImageDim(2);
+  }
+  else{
+    applyImageDim(n);
+  }
+  showSlides(slideIndex += n);
+}
+
+function currentSlide(n) {
+  showSlides(slideIndex = n);
+}
+
+function showSlides(n) {
+  var i;
+  var slides = document.getElementsByClassName("mySlides");
+  if (n > slides.length) {slideIndex = 1}
+  if (n < 1) {slideIndex = slides.length}
+  for (i = 0; i < slides.length; i++) {
+      slides[i].style.display = "none";
+  }
+  slides[slideIndex-1].style.display = "block";
+}
+
+function applyImageDim(n){
+  var height = $(window).height();
+  var width = $(window).width();
+  a = slideIndex + n;
+  $('#dinnerFTW-container').css({'height': width * .5});
+  $('.dinnerFTWpic' + a).css({'height': width * .5});
+}
+</script>
+</body>
+</html>
