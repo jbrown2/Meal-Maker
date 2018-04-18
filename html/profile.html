@@ -7,15 +7,21 @@
  	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
 	<link href="https://fonts.googleapis.com/css?family=Josefin+Sans" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Merriweather:400,900" rel="stylesheet">
+    
 	<link rel="stylesheet" href="../data/css/profile-style.css"  type="text/css"/>
+    <link rel="stylesheet" href="../data/css/style.css"  type="text/css"/>
+    <link rel="stylesheet" href="../data/css/responsive.css"  type="text/css"/>
 
 	<script type="text/javascript" src="../js/profile.js"> </script>
 
 	</head>
 	<body>
 
-		<div id="nav_bar">
-			<a href="specialdishes.html" id="logo"> MealMaker </a>
+        
+		<div id="nav_bar_container">
+            <div id="nav_bar">
+			<a href="specialdishes.html" id="logo" class="weather"> MealMaker </a>
 
 			<div id="search_bar">
 				<img id="search_icon" alt="search button" src="../data/images/search_icon.png"/>
@@ -34,11 +40,13 @@
 
 			 	<li> <a href="profile.html" ><img id="profile_icon" alt="user's image" src="../data/images/default-user.png"/> </a></li>
 			 </ul>
+        </div>
 		</div>
 
+        <div style="height: 51px;"></div>
 
-
-
+        <div id="profile-main">
+        <sixtyPX></sixtyPX>
 		<h1 id="profile_title"> User's Profile</h1>
 		<!-- Javascript for user's name -->
 		
@@ -52,17 +60,32 @@
 			
 
 		</div>
+            
+        <fortyPX></fortyPX>
 
 
 		<div id="dietary">
-			<h4 id="diet_title"> Dietary Preferences </h4> 
+			<h4 id="diet_title"> Dietary Preferences </h4>
+            
+            
+            
 			<img id="edit_icon" alt="edit dietary preferences" src="../data/images/edit_icon.png">
-			<br>
+			
+            <twentyPX></twentyPX>
+            
 			<!-- javascript for adding more dietary options -->
 			
+            <div style="position: relative;">
 			<p class="diet_type"> Dairy Free </p>
-		
+            
+            <p class="diet_type"> Nut Allergic </p>
+            <p class="diet_type"> Seafood Hatred </p>
+            </div>
+            
+            
 		</div>
+        
+        <fortyPX></fortyPX>
 
 		<div id="favorites"> 
 
@@ -72,6 +95,7 @@
 			<!-- javascript for favorite dish info  -->
 
 		</div>
+        </div>
 
 
 

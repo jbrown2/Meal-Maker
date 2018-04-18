@@ -5,10 +5,13 @@
   
   <link href="https://fonts.googleapis.com/css?family=Josefin+Sans" rel="stylesheet">
   <link rel="stylesheet" href="../data/css/specialdishes.css">
+    
   <link rel="stylesheet" href="../data/css/search-style.css"  type="text/css"/>
+    <link rel="stylesheet" href="../data/css/responsive.css"  type="text/css"/>
 	<script src="https://code.jquery.com/jquery-3.1.1.min.js"
   integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
   crossorigin="anonymous"></script>
+    
 
 
 </head>
@@ -16,29 +19,32 @@
 
 <body>
 <!-- nav bar -->
-<div id="nav_bar">
-      <a href="" id="logo"> MealMaker </a>
+<div id="nav_bar_container">
+            <div id="nav_bar">
+			<a href="specialdishes.html" id="logo" class="weather"> MealMaker </a>
 
-      <div id="search_bar">
-        <img id="search_icon" alt="search button" src="../data/images/search_icon.png"/>
-        <input id="search_box" type="text" placeholder="Search for ingredients, recipe names...">
-      </div>
+			<div id="search_bar">
+				<img id="search_icon" alt="search button" src="../data/images/search_icon.png"/>
+				<input id="search_box" type="text" placeholder="Search for ingredients, recipe names...">
+			</div>
 
-      <ul class="nav_buttons">
-      
-        <li> <a href="" id="create_recipe"><img id="add_icon" alt="add button" src="../data/images/add_icon.png"/>
-         <h4 id="new_recipe" > NEW RECIPE </h4></a> </li>
-      
+			<ul class="nav_buttons">
+			
+				<li> <a href="" id="create_recipe"><img id="add_icon" alt="add button" src="../data/images/add_icon.png"/>
+				 <h4 id="new_recipe" > NEW RECIPE </h4></a> </li>
+			
+		
+				<li> <a href="" id="inspirations"> <img id="inspo_icon" alt="inspiration icon" src="../data/images/inspo_icon.png"/>
+				<h4 id="recipe_inspo"> RECIPE INSPIRATIONS </h4></a> </li>
+			
+
+			 	<li> <a href="profile.html" ><img id="profile_icon" alt="user's image" src="../data/images/default-user.png"/> </a></li>
+			 </ul>
+        </div>
+		</div>
+
+<div style="height: 51px; width: 100%;"></div>
     
-        <li> <a href="" id="inspirations"> <img id="inspo_icon" alt="inspiration icon" src="../data/images/inspo_icon.png"/>
-        <h4 id="recipe_inspo"> RECIPE INSPIRATIONS </h4></a> </li>
-      
-
-        <li> <a href="profile.html" ><img id="profile_icon" alt="user's image" src="../data/images/default-user.png"/> </a></li>
-       </ul>
-    </div>
-
-
 <!-- dinners for the week block -->
 <div id="dinnerFTW-container">
   <div class="slideshow-container">

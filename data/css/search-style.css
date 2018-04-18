@@ -1,3 +1,8 @@
+*{
+    margin: 0px;
+    padding: 0px;
+}
+
 #logo{
 	text-decoration: none;
 	font-size: 25px;
@@ -5,6 +10,7 @@
 	margin-left: 10px;
 	position: relative;
 	top: 2px;
+    font-family: 'Josefin Sans', sans-serif;
 }
 
 #new_recipe, #recipe_inspo{
@@ -68,11 +74,16 @@ a {
 }
 
 #nav_bar{
+    top: 0px;
+    
+    z-index: 2;
+    
 	padding-top: 10px;
 	padding-bottom: 15px;
-	border-bottom: 1px solid #979797;
+	
 	display: inline-flex;
-	width: 100%;
+    text-align: left;
+    width: 100%;
 }
 
 #search_bar {
@@ -85,12 +96,12 @@ a {
 
 
 #profile_icon{
-	width: 42px;
+	width: 30px;
 	height: auto;
 	border: black 1px solid;
 	border-radius: 50%;
 	position: relative;
-	top: -10px;
+	
 }
 
 @media screen and (max-width: 1140px) {
@@ -117,3 +128,12 @@ a {
 }
 
 
+
+#nav_bar_container {
+    position: fixed;
+    width: 100%;
+    z-index: 2;
+    text-align: center;
+    background-color: white;
+    box-shadow: 0px 1px 10px #979797;
+}

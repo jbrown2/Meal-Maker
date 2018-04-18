@@ -2,7 +2,19 @@ html, body {
 	 width: 100%;
     height: 100%;
     clear: both;
+    
 }
+
+html{
+    overflow-y: scroll;
+}
+
+*{
+    margin: 0px;
+    padding: 0px;
+    font-family: "Josefin Sans";
+}
+
 #logo{
 	text-decoration: none;
 	font-size: 25px;
@@ -10,6 +22,7 @@ html, body {
 	margin-left: 10px;
 	position: relative;
 	top: 2px;
+    
 }
 
 #new_recipe, #recipe_inspo{
@@ -74,11 +87,28 @@ a {
 }
 
 #nav_bar{
+    top: 0px;
+    
+    z-index: 2;
+    
 	padding-top: 10px;
 	padding-bottom: 15px;
-	border-bottom: 1px solid #979797;
+	
 	display: inline-flex;
-	width: 100%;
+    text-align: left;
+    width: 100%;
+    
+}
+
+#nav_bar_container{
+
+    position: fixed;
+    width: 100%;
+    z-index: 2;
+    text-align: center;
+    background-color: white;
+    box-shadow: 0px 1px 10px #979797;
+    
 }
 
 #search_bar {
@@ -145,13 +175,12 @@ a {
 
 
 #profile_icon{
-	width: 40px;
+	width: 30px;
 	height: auto;
 	border: black 1px solid;
 	border-radius: 50%;
 	position: relative;
 	
-	top: -10px;
 
 
 }
@@ -177,18 +206,25 @@ a {
 
 #dietary, #favorites{
 	width: 92%;
-	float: right;
 	margin-bottom: 5px;
+    position: relative;
 }
 
 #diet_title , #fav_title{
+    font-family: 'Merriweather', serif;
+    font-weight: 00;
 	display: inline-block;
 }
 .diet_type {
 	border: black 1px solid;
-	display: inline;
-	padding: 3px;
-	border-radius: 4px;
+	display: inline-block;
+	padding: 10px 20px;
+	border-radius: 5px;
+    margin-right: 10px;
+    margin-top: 10px;
+    transform: translateY(-10px);
+    
+    
 }
 
 @media screen and (max-width: 1140px) {
@@ -215,3 +251,19 @@ a {
 }
 
 
+
+
+
+.weather {
+    font-family: "Josefin Sans";
+}
+
+
+
+#profile-main {
+    max-width: 1000px;
+    text-align: left;
+    margin: auto;
+    padding-right: 30px;
+    padding-left: 30px;
+}

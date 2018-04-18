@@ -1,7 +1,7 @@
 
 $(window).resize(function() {
 
-	if($(window).width() <= 650){
+	if($(window).width() <= 100){
 		alert("Please enlargen your browser!");
 	}
 });

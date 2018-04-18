@@ -1,3 +1,12 @@
+@media only screen and (min-width: 1217px) {
+    
+    #nav_bar{
+        width: 1217px;
+    }
+    
+}
+
+
 @media only screen and (max-width: 800px) {
     
     #Login-Main{

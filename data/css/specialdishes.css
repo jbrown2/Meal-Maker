@@ -32,8 +32,10 @@ html,body{
 }
 
 #dinnerFTW-container{
-  height: 600px;
+  height: 60px;
   width: 100%;
+    position: relative;
+    margin-top: 
 }
 
 .slideshow-container{
