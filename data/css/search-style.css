@@ -26,6 +26,7 @@
 	width: 90% ;
 	border: none;
 	font-size: 15px;
+	font-family: "Josefin Sans";
 }
 
 
@@ -94,9 +95,8 @@ a {
 
 
 
-
 #profile_icon{
-	width: 30px;
+	width: 32px;
 	height: auto;
 	border: black 1px solid;
 	border-radius: 50%;
