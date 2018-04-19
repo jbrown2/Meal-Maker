@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+	<link href="https://fonts.googleapis.com/css?family=Josefin+Sans" rel="stylesheet">
+	<link rel="stylesheet" href="../data/css/search-style.css"  type="text/css"/>
+	<link rel="stylesheet" href="../data/css/responsive.css"  type="text/css"/>
+	<link rel="stylesheet" href="../data/css/search.css"  type="text/css"/>
+
+	<script src="https://code.jquery.com/jquery-3.1.1.min.js"
+  integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
+  crossorigin="anonymous"></script>
+
+	<script src="../socket.io/socket.io.js"></script>
+	<script src='../js/search.js'></script>
+</head>
+<body>
+
+	<!-- nav bar -->
+	<div id="nav_bar_container">
+	            <div id="nav_bar">
+				<a href="specialdishes.html" id="logo" class="weather"> MealMaker </a>
+
+				<div id="search_bar">
+	        <form id='form'>
+	    			<img id="search_icon" alt="search button" src="../data/images/search_icon.png"/>
+	    			<input id="search_box" type="text" placeholder="Search for ingredients, recipe names...">
+	          <input id="searchSubmitButton" type="submit" value = "Submit">
+	        </form>
+				</div>
+
+				<ul class="nav_buttons">
+
+					<li> <a href="" id="create_recipe"><img id="add_icon" alt="add button" src="../data/images/add_icon.png"/>
+					 <h4 id="new_recipe" > NEW RECIPE </h4></a> </li>
+
+
+					<li> <a href="" id="inspirations"> <img id="inspo_icon" alt="inspiration icon" src="../data/images/inspo_icon.png"/>
+					<h4 id="recipe_inspo"> RECIPE INSPIRATIONS </h4></a> </li>
+
+
+				 	<li> <a href="profile.html" ><img id="profile_icon" alt="user's image" src="../data/images/default-user.png"/> </a></li>
+				 </ul>
+	        </div>
+			</div>
+
+	<div style="height: 51px; width: 100%;"></div>
+
+
+<!-- filters -->
+<form id="filters">
+	<p id="filterText">Primary Filters</p>
+	<div id="dropdownFilters">
+		<div class="dropdownFilter">
+			<select id="dropdownTime" name="time">
+				<option value="5min"> Less than 5 min </option>
+				<option value="10min"> Less than 10 min</option>
+			</select>
+		</div>
+
+		<div class="dropdownFilter">
+			<select id="dropdownMoney" name="money">
+				<option value="10$"> Less than $10 </option>
+				<option value="20$"> Less than $20</option>
+			</select>
+		</div>
+
+		<div class="dropdownFilter">
+			<select id="dropdownDiet" name="diet">
+				<option value="vegetarian"> Vegetarian </option>
+				<option value="vegan"> Vegan </option>
+			</select>
+		</div>
+
+		<div class="dropdownFilter">
+			<select id="dropdownHealthy" name="healthy">
+				<option value="healthy"> Healthy </option>
+				<option value="unhealthy"> Unhealthy </option>
+			</select>
+		</div>
+	</div>
+
+	<br>
+
+	<p id="filterText">Nutrition Filters</p>
+
+	<div id="nutritionFilters">
+
+		<div class="nutritionFilter">
+			<div id="nutritionFilterText">
+				<p>Fat:</p>
+			</div>
+			<input id="fatFilter" class="nutritionFilterInput" type="text" name="fat">
+		</div>
+
+		<div class="nutritionFilter">
+			<div id="nutritionFilterText">
+				<p>Calories:</p>
+			</div>
+			<input id="caloriesFilter" class="nutritionFilterInput" type="text" name="calories">
+		</div>
+
+		<div class="nutritionFilter">
+			<div id="nutritionFilterText">
+				<p>Sugar:</p>
+			</div>
+			<input id="sugarFilter" class="nutritionFilterInput" type="text" name="sugar">
+		</div>
+
+	</div>
+
+	<button id="applyFiltersButton" type="Submit">Apply</button>
+</form>
+
+<div id="lineAfterFilters-container">
+	<div id="lineAfterFilters"></div>
+</div>
+
+
+
+<!-- results list -->
+<ul id='resultList'></ul>
+
+</body>
+</html>

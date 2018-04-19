@@ -3,6 +3,13 @@
     padding: 0px;
 }
 
+#searchSubmitButton{
+  border: 1px black orange solid;
+  height: 1px;
+  width: 1px;
+  display: none;
+}
+
 #logo{
 	text-decoration: none;
 	font-size: 25px;

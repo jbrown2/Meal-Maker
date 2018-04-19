@@ -1,0 +1,23 @@
+{
+  "name": "mealmaker",
+  "version": "1.0.0",
+  "description": "",
+  "main": "backendtest.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.18.2",
+    "consolidate": "^0.15.1",
+    "express": "^4.16.3",
+    "hogan": "^1.0.2",
+    "http": "0.0.0",
+    "path": "^0.12.7",
+    "rapidapi-connect": "0.0.6",
+    "require": "^2.4.20",
+    "socket.io": "^2.1.0",
+    "unirest": "^0.5.1"
+  }
+}
