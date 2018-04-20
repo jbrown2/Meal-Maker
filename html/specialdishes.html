@@ -9,9 +9,10 @@
   <link rel="stylesheet" href="../data/css/specialdishes.css">
   <link rel="stylesheet" href="../data/css/search-style.css"  type="text/css"/>
   <link rel="stylesheet" href="../data/css/responsive.css"  type="text/css"/>
-  <script src="https://code.jquery.com/jquery-3.1.1.min.js"
+	<!--<script src="https://code.jquery.com/jquery-3.1.1.min.js"
   integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
-  crossorigin="anonymous"></script>
+  crossorigin="anonymous"></script>-->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <script src="../socket.io/socket.io.js"></script>
   <script src='../js/specialdishes.js'></script>
 
@@ -186,15 +187,19 @@
         </textBub>
 
         <sixtyPX></sixtyPX>
-              
 
 
     </div>
-          
+            <sixtyPX></sixtyPX>
+
+  </div>
+
 <!-- nav bar -->
 <div id="nav_bar_container">
             <div id="nav_bar">
-      <a href="specialdishes.html" id="logo" class="weather"> MealMaker </a>
+              <div id="logo" class="weather">
+                <p> MealMaker </p>
+              </div>
 
       <div id="search_bar">
         <form id='form'>
@@ -205,16 +210,18 @@
       </div>
 
       <ul class="nav_buttons">
-
-        <li> <a href="" id="create_recipe"><img id="add_icon" alt="add button" src="../data/images/add_icon.png"/>
-         <h4 id="new_recipe" > NEW RECIPE </h4></a> </li>
+        <div id="create_recipe">
+          <li> <img id="add_icon" alt="add button" src="../data/images/add_icon.png"/>
+           <h4 id="new_recipe" > NEW RECIPE </h4> </li>
+         </div>
 
 
         <li> <a href="" id="inspirations"> <img id="inspo_icon" alt="inspiration icon" src="../data/images/inspo_icon.png"/>
         <h4 id="recipe_inspo"> RECIPE INSPIRATIONS </h4></a> </li>
 
-
-        <li> <a href="profile.html" ><img id="profile_icon" alt="user's image" src="../data/images/default-user.png"/> </a></li>
+        <div id="profileIcon">
+          <li> <img id="profile_icon" alt="user's image" src="../data/images/default-user.png"/></li>
+        </div>
        </ul>
         </div>
     </div>
@@ -260,7 +267,6 @@
     <!-- main dishes -->
     <div id="main-dishes-container">
       <div id="main-dishes">
-        <h1 style="color: black">this is where the recipes go!</h1>
         <ul id="main-dishes-list">
         </ul>
 
@@ -332,7 +338,28 @@ var createmodal = document.getElementById('SignUp-Main');
  $( window ).on( "load", function() {
        loadmodal.style.display = "block";
     });
- 
+// // Get the <span> element that closes the modal
+// var loadspan = document.getElementsByClassName("close")[0];
+
+// var createspan = document.getElementById("createspan");
+
+// var signup = document.getElementById("sign_up");
+
+// signup.onclick = function(){
+//    loadmodal.style.display = "none";
+//    createmodal.style.display = "block";
+
+// }
+
+// createspan.onclick = function(){
+//    createmodal.style.display = "none";
+// }
+// // When the user clicks on <span> (x), close the modal
+// loadspan.onclick = function() {
+//     loadmodal.style.display = "none";
+
+// }
+
 // Get the <span> element that closes the modal
 var span = document.getElementsByClassName("close")[0];
 var createspan = document.getElementsByClassName("close")[1];

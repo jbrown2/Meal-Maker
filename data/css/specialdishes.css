@@ -5,6 +5,10 @@ html,body{
     color: white;
 }
 
+h4{
+  color: black;
+}
+
 .mySlides {
   display: none;
 }
@@ -35,7 +39,7 @@ html,body{
   height: 60px;
   width: 100%;
     position: relative;
-    margin-top: 
+    margin-top:
 }
 
 .slideshow-container{
@@ -135,4 +139,40 @@ html,body{
 #main-dishes-text{
   color: black;
   padding-bottom: 10px;
+}
+
+
+
+
+
+#main-dishes-list{
+  padding: 0;
+  list-style-type: none;
+}
+
+#main-dishes-list li {
+  display: inline;
+  float: left;
+  margin: 10px;
+}
+
+#resultItem {
+  width: 240px;
+  height: 280px;
+  border: 1px black solid;
+  position: relative;
+}
+
+#resultImage {
+  width: 100%;
+  height: auto;
+}
+
+
+#resultItem #resultTitle {
+  position: absolute;
+}
+
+#resultTitle{
+  color: black;
 }

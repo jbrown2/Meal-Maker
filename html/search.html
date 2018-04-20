@@ -7,9 +7,10 @@
 	<link rel="stylesheet" href="../data/css/responsive.css"  type="text/css"/>
 	<link rel="stylesheet" href="../data/css/search.css"  type="text/css"/>
 
-	<script src="https://code.jquery.com/jquery-3.1.1.min.js"
+	<!--<script src="https://code.jquery.com/jquery-3.1.1.min.js"
   integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
-  crossorigin="anonymous"></script>
+  crossorigin="anonymous"></script>-->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 
 	<script src="../socket.io/socket.io.js"></script>
 	<script src='../js/search.js'></script>
@@ -19,7 +20,9 @@
 	<!-- nav bar -->
 	<div id="nav_bar_container">
 	            <div id="nav_bar">
-				<a href="specialdishes.html" id="logo" class="weather"> MealMaker </a>
+								<div id="logo" class="weather">
+									<p> MealMaker </p>
+								</div>
 
 				<div id="search_bar">
 	        <form id='form'>
@@ -30,16 +33,18 @@
 				</div>
 
 				<ul class="nav_buttons">
-
-					<li> <a href="" id="create_recipe"><img id="add_icon" alt="add button" src="../data/images/add_icon.png"/>
-					 <h4 id="new_recipe" > NEW RECIPE </h4></a> </li>
+					<div id="create_recipe">
+						<li> <img id="add_icon" alt="add button" src="../data/images/add_icon.png"/>
+						 <h4 id="new_recipe" > NEW RECIPE </h4> </li>
+					 </div>
 
 
 					<li> <a href="" id="inspirations"> <img id="inspo_icon" alt="inspiration icon" src="../data/images/inspo_icon.png"/>
 					<h4 id="recipe_inspo"> RECIPE INSPIRATIONS </h4></a> </li>
 
-
-				 	<li> <a href="profile.html" ><img id="profile_icon" alt="user's image" src="../data/images/default-user.png"/> </a></li>
+					<div id="profileIcon">
+				 		<li> <img id="profile_icon" alt="user's image" src="../data/images/default-user.png"/></li>
+					</div>
 				 </ul>
 	        </div>
 			</div>
@@ -53,29 +58,32 @@
 	<div id="dropdownFilters">
 		<div class="dropdownFilter">
 			<select id="dropdownTime" name="time">
-				<option value="5min"> Less than 5 min </option>
-				<option value="10min"> Less than 10 min</option>
+				<option value="null"> Time to cook... </option>
+				<option value="5"> Less than 5 min </option>
+				<option value="10"> Less than 10 min</option>
+				<option value="30"> Less than 30 min</option>
+				<option value="60"> Less than 1 hr</option>
+				<option value="120"> Less than 2 hr</option>
 			</select>
 		</div>
 
 		<div class="dropdownFilter">
 			<select id="dropdownMoney" name="money">
-				<option value="10$"> Less than $10 </option>
-				<option value="20$"> Less than $20</option>
+				<option value="null"> Cost... </option>
+				<option value="10"> Less than $10 </option>
+				<option value="20"> Less than $20</option>
+				<option value="50"> Less than $50</option>
+				<option value="100"> Less than $100</option>
+				<option value="150"> Less than $150</option>
+				<option value="250"> Less than $250</option>
 			</select>
 		</div>
 
 		<div class="dropdownFilter">
 			<select id="dropdownDiet" name="diet">
+				<option value="null"> Diet...</option>
 				<option value="vegetarian"> Vegetarian </option>
 				<option value="vegan"> Vegan </option>
-			</select>
-		</div>
-
-		<div class="dropdownFilter">
-			<select id="dropdownHealthy" name="healthy">
-				<option value="healthy"> Healthy </option>
-				<option value="unhealthy"> Unhealthy </option>
 			</select>
 		</div>
 	</div>
@@ -90,21 +98,21 @@
 			<div id="nutritionFilterText">
 				<p>Fat:</p>
 			</div>
-			<input id="fatFilter" class="nutritionFilterInput" type="text" name="fat">
+			<input id="fatFilter" class="nutritionFilterInput" type="text" name="fat" placeholder="At most (g)...">
 		</div>
 
 		<div class="nutritionFilter">
 			<div id="nutritionFilterText">
 				<p>Calories:</p>
 			</div>
-			<input id="caloriesFilter" class="nutritionFilterInput" type="text" name="calories">
+			<input id="caloriesFilter" class="nutritionFilterInput" type="text" name="calories" placeholder="At most (cal)...">
 		</div>
 
 		<div class="nutritionFilter">
 			<div id="nutritionFilterText">
 				<p>Sugar:</p>
 			</div>
-			<input id="sugarFilter" class="nutritionFilterInput" type="text" name="sugar">
+			<input id="sugarFilter" class="nutritionFilterInput" type="text" name="sugar" placeholder="At most (g)...">
 		</div>
 
 	</div>

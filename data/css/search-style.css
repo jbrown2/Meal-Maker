@@ -7,7 +7,7 @@
   border: 1px black orange solid;
   height: 1px;
   width: 1px;
-  display: none;
+	display: none;
 }
 
 #logo{
@@ -83,12 +83,12 @@ a {
 
 #nav_bar{
     top: 0px;
-    
+
     z-index: 2;
-    
+
 	padding-top: 10px;
 	padding-bottom: 15px;
-	
+
 	display: inline-flex;
     text-align: left;
     width: 100%;
@@ -108,7 +108,7 @@ a {
 	border: black 1px solid;
 	border-radius: 50%;
 	position: relative;
-	
+
 }
 
 @media screen and (max-width: 1140px) {
