@@ -3,6 +3,14 @@ var express = require('express');
 var app = express();
 var server = http.createServer(app);
 var io = require('socket.io').listen(server);
+var expressValidator = require('express-validator');
+var cookieParser = require('cookie-parser');
+var db = require('./js/database.js');
+var session = require('express-session');
+var passport = require('passport');
+var LocalStrategy = require('passport-local').Strategy;
+var bcrypt = require('bcrypt');
+const saltRounds = 10;
 
 var engines = require('consolidate');
 app.engine('html', engines.hogan);
@@ -17,15 +25,138 @@ var bodyParser = require('body-parser');
 app.use(bodyParser.urlencoded({extended:false}));
 app.use(bodyParser.json());
 
+app.use(expressValidator());
+
+app.use(cookieParser());
+
+app.use(session({
+	secret: 'oiashdfbnjnjkjsdaoffgjngb',
+	resave: false,
+	saveUninitialized: false,
+}));
+
+app.use(passport.initialize());
+app.use(passport.session());
+
+passport.use(new LocalStrategy(function (username, password, done) {
+	console.log(username);
+	console.log(password);
+	// get password hash corresponding to entered username
+	db.connection.query('SELECT id, password FROM user WHERE username = ?', [username], function(err, results) {
+		if (err) done(err);
+		// if no results are found, user does not exist in database
+		if (results.length === 0) {
+			done(null, false);
+		} else {
+			console.log(results[0].password.toString())
+			const hash = results[0].password.toString();
+
+			bcrypt.compare(password, hash, function(err, response) {
+				if (response) {
+					return done(null, {user_id: results[0].id})
+				} else {
+					return done(null, false);
+				}
+			});
+		}
+	});
+}));
+
 var queryGLOBAL = "";
+
+app.use(function(req, res, next) {
+	res.locals.isAuthenticated = req.isAuthenticated();
+	res.locals.notAuthenticated = !req.isAuthenticated();
+	next();
+})
+
+app.get('/', function(request, response) {
+	console.log('home page');
+	console.log(request.user);
+	console.log(request.isAuthenticated());
+	response.render('html/specialdishes.html');
+});
 
 app.get('/search/:query', function(request, response) {
 	response.render('html/search.html', {query: queryGLOBAL});
 });
 
-app.get('/profile', function(request, response) {
+app.get('/login', function(req, res) {
+	res.render('html/login.html');
+})
+
+// handles a login request
+app.post('/login', passport.authenticate('local', {
+	successRedirect: '/',
+	failureRedirect: '/'
+}));
+
+app.get('/logout', function(req, res) {
+	req.logout();
+	req.session.destroy();
+	res.redirect('/');
+});
+
+app.get('/register', function(req, res) {
+	console.log("hi");
+	res.render('html/register.html');
+});
+
+// handles a registration request
+app.post('/register', function(req, res) {
+	// validate user input
+	/*
+	req.checkBody('username', 'Email cannot be empty.').notEmpty();
+
+	const errors = req.validationrrors();
+
+	if (errors) {
+		console.log(`errors: , ${JSON.stringify(errors)}`);
+	}*/
+	console.log('registering user');
+	var user = req.body.username;
+	var pass = req.body.password;
+
+	console.log(user);
+	console.log(pass);
+
+		// hash plaintext password
+		bcrypt.hash(pass, saltRounds, function(err, hash) {
+			db.connection.query('INSERT INTO user (username, password) VALUES (?, ?)', [user, hash], function(err, results) {
+				if (err) console.log(err);
+				db.connection.query('SELECT LAST_INSERT_ID() as user_id', function(error, results) {
+					const user_id = results[0];
+					console.log(results[0]);
+					req.login(results[0], function(err) {
+						res.redirect('/');
+					});
+				});
+			});
+		});
+
+});
+
+passport.serializeUser(function(user_id, done) {
+	done(null, user_id);
+});
+
+passport.deserializeUser(function(user_id, done) {
+	done(null, user_id);
+})
+
+app.get('/profile', authenticationMiddleware(), function(request, response) {
 	response.render('html/profile.html');
 });
+
+function authenticationMiddleware() {
+	return (req, res, next) => {
+		console.log(`req.session.passport.user: ${JSON.stringify(req.session.passport)}`);
+
+		if (req.isAuthenticated()) return next();
+
+		res.redirect('/');
+	}
+}
 
 io.sockets.on('connection', function(socket){
 
@@ -162,10 +293,6 @@ app.get('/recipe-info/:id', function(request, response) {
 	});
 });
 
-app.get('/', function(request, response) {
-	response.render('html/specialdishes.html');
-});
-
 app.post('/', function(request, response) {
 	var protocol = request.protocol;
 	var host = request.get('host');
@@ -189,7 +316,7 @@ app.post('/profile', function(request, response) {
 	response.redirect(newURL);
 });
 
-server.listen(8080, function(error, response) {
+server.listen(8081, function(error, response) {
 	if(error) {
 		console.log('Error: ' + error);
 	}

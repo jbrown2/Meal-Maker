@@ -2,17 +2,16 @@ html,body{
     width: 100%;
     height: 100%;
     clear: both;
-    
-    
+
 }
 
 *{
-    text-rendering: optimizeLegibility; 
+    text-rendering: optimizeLegibility;
     -webkit-font-smoothing: antialiased;
     margin: 0px;
     padding: 0px;
-    
-    
+
+
 }
 #color {
     background-color: white;
@@ -26,7 +25,28 @@ html,body{
      display: none;
     width: 60%;
     margin: auto;
-    position: fixed; 
+    position: fixed;
+    border-radius: 5px;
+    text-align: center;
+    box-sizing: border-box;
+    z-index: 1;
+     padding-top: 100px; /* Location of the box */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    /*background-color: rgb(0,0,0); /* Fallback color */
+    /*background-color: rgba(0,0,0,0.3); /* Black w/ opacity */
+
+
+
+}
+
+#SignUp-Main2 {
+    width: 60%;
+    margin: auto;
+    position: fixed;
     border-radius: 5px;
     text-align: center;
     box-sizing: border-box;
@@ -39,15 +59,15 @@ html,body{
     overflow: auto; /* Enable scroll if needed */
     background-color: rgb(0,0,0); /* Fallback color */
     background-color: rgba(0,0,0,0.3); /* Black w/ opacity */
-    
-    
-    
+
+
+
 }
 
 #Login-Main {
     display: block;
     margin: auto;
-    position: fixed; 
+    position: fixed;
     border-radius: 5px;
     text-align: center;
     box-sizing: border-box;
@@ -60,11 +80,11 @@ html,body{
     width: 100%; /* Full width */
     height: 100%; /* Full height */
     overflow: auto; /* Enable scroll if needed */
-    background-color: rgb(0,0,0); /* Fallback color */
-    background-color: rgba(0,0,0,0.3); /* Black w/ opacity */
-    
-    
-    
+    /*background-color: rgb(0,0,0); /* Fallback color */
+    /*background-color: rgba(0,0,0,0.3); /* Black w/ opacity */
+
+
+
 }
 
 .close {
@@ -86,21 +106,21 @@ sixtyPX{
     display: block;
     height: 60px;
     width: 0;
-    
+
 }
 
 fortyPX{
     display: block;
     height: 40px;
     width: 0;
-    
+
 }
 
 twentyPX{
     display: block;
     height: 20px;
     width: 0;
-    
+
 }
 
 
@@ -115,12 +135,12 @@ regtext{
     font-size: 18px;
     color: #979797;
 
-    
+
 }
 
 textBub{
     max-width: 360px;
-     
+
     display: block;
     margin: auto;
     border-radius: 5px;
@@ -130,21 +150,21 @@ textBub{
     padding-right: 20px;
     padding-top: 19px;
     padding-bottom: 11px;
-    
-    
+
+
 }
 
 
 
 
 .facebook-div {
-    
+
     position: relative;
     padding-left: 76px;
 }
 
 .google-div {
-    
+
     position: relative;
     padding-left: 76px;
 }
@@ -152,13 +172,13 @@ textBub{
 .white-text {
     color: white;
     position: relative;
-    
+
 }
 
 .pink-text {
     color: #FB4D58 ;
     position: relative;
-    
+
 }
 
 .social-icon-login {
@@ -167,7 +187,7 @@ textBub{
     left: 20px;
     top: 50%;
     transform: translateY(-50%);
-    
+
     height: 36px;
 }
 
@@ -175,7 +195,7 @@ textBub{
 
 .or-box {
     max-width: 360px;
-    display: flex; 
+    display: flex;
     align-items: center;
     justify-content: center;
     margin: auto;
@@ -183,8 +203,8 @@ textBub{
 
 .chk-box {
     max-width: 360px;
-    display: flex; 
-    
+    display: flex;
+
     justify-content: flex-start;
     margin: auto;
 }
@@ -209,7 +229,7 @@ hr {
     border: 0px;
     outline: none;
     width: 100%;
-    
+
 }
 
 ::placeholder{
@@ -221,7 +241,7 @@ input[type=checkbox] {
 }
 
 #remember-chk {
-   
+
     margin-right: 5px;
 }
 
@@ -235,8 +255,8 @@ input[type=checkbox] {
 
 .signup-box {
     opacity: 1;
-    
-    
+
+
     text-align: center;
     position: relative;
 }
@@ -254,25 +274,25 @@ input[type=checkbox] {
     transform: translate(-50%,-50%);
     cursor: pointer;
     border-radius: 5px;
-    
+
     z-index: 1;
-    
+
 }
 
 .btn-hover {
-   
-    
+
+
     background-color: #FB4D58;
-    
-    
+
+
 }
 
 .signup-btn-hover {
-    
+
     border: solid 1px #FB4D58;
-    
-    
-    
+
+
+
 }
 
 
@@ -313,12 +333,10 @@ input[type=checkbox] {
 
 .facebook-btn {
     background-color: #3C5995;
-    
+
 }
 
 .google-btn {
     background-color: #518EF8;
-    
+
 }
-
-

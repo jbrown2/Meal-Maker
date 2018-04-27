@@ -8,7 +8,7 @@ $(document).ready(function() {
 			$("#main-dishes-list").empty();
 			for(var i=0; i<recipes.length; i++){
 				var title = recipes[i].title;
-				console.log(title);
+				//console.log(title);
 				var image = recipes[i].image;
 				var id = recipes[i].id;
 				var imageURL = "https://spoonacular.com/recipeImages/"+id+"-240x150.jpg";
@@ -33,7 +33,7 @@ $(document).ready(function() {
 
 	var form = document.getElementById('form');
 	if(form){
-		console.log("hello");
+		//console.log("hello");
 		form.addEventListener('submit', submitHandler, false);
 	}
 });

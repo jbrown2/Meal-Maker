@@ -22,7 +22,7 @@
 
 <body>
   <!-- login modal -->
-
+  {{#notAuthenticated}}
   <div id="Login-Main">
   <div id="color">
   <span class="close">&times;</span>
@@ -57,26 +57,23 @@
 
         <fortyPX></fortyPX>
         <textBub class="input-box">
-            <input class="input-textbox" placeholder="Email">
+            <input id="email" class="input-textbox" placeholder="Email">
 
         </textBub>
         <twentyPX></twentyPX>
         <textBub class="input-box">
 
-            <input class="input-textbox" type="password" placeholder="Password">
+            <input id="password" class="input-textbox" type="password" placeholder="Password">
 
         </textBub>
         <twentyPX></twentyPX>
-        <div class="chk-box">
-            <input id="remember-chk" type="checkbox">
-            <regtext style="color:#979797">Remember Me</regtext>
-        </div>
+
         <twentyPX></twentyPX>
 
 
         <textBub id="submit-parent" class="submit-box">
             <regtext class="white-text"></regtext>
-            <button class="submit-button">
+            <button id="login-submit" class="submit-button">
 
             </button>
 
@@ -114,7 +111,7 @@
     </div>
       <sixtyPX></sixtyPX>
     </div>
-
+    {{/notAuthenticated}}
     <!-- Create Account -->
         <div id="SignUp-Main">
           <div id="color">
@@ -128,20 +125,20 @@
 
 
         <textBub class="input-box">
-            <input class="input-textbox" placeholder="Email">
+            <input id="register-email" class="input-textbox" placeholder="Email">
 
         </textBub>
         <twentyPX></twentyPX>
         <textBub class="input-box">
 
-            <input class="input-textbox" type="password" placeholder="Password">
+            <input id="register-password" class="input-textbox" type="password" placeholder="Password">
 
         </textBub>
 
         <twentyPX></twentyPX>
         <textBub class="input-box">
 
-            <input class="input-textbox" type="password" placeholder="Confirm Password">
+            <input id="register-confirm-password" class="input-textbox" type="password" placeholder="Confirm Password">
 
         </textBub>
 
@@ -155,7 +152,7 @@
 
         <textBub id="submit-parent" class="submit-box">
             <regtext class="white-text"></regtext>
-            <button class="submit-button">
+            <button id="register-submit" class="submit-button">
 
             </button>
 
@@ -210,18 +207,27 @@
       </div>
 
       <ul class="nav_buttons">
-        <div id="create_recipe">
-          <li> <img id="add_icon" alt="add button" src="../data/images/add_icon.png"/>
-           <h4 id="new_recipe" > NEW RECIPE </h4> </li>
-         </div>
-
-
+        {{#isAuthenticated}}
         <li> <a href="" id="inspirations"> <img id="inspo_icon" alt="inspiration icon" src="../data/images/inspo_icon.png"/>
         <h4 id="recipe_inspo"> RECIPE INSPIRATIONS </h4></a> </li>
+        {{/isAuthenticated}}
+        {{#notAuthenticated}}
+        <div id="login" class="text-button">
+          <li><a href="/login">Login</a></li>
+        </div>
 
+        <div id="register" class="text-button">
+          <li><a href="/register">Register</a></li>
+        </div>
+        {{/notAuthenticated}}
+        {{#isAuthenticated}}
         <div id="profileIcon">
           <li> <img id="profile_icon" alt="user's image" src="../data/images/default-user.png"/></li>
         </div>
+        <div id="logout" class="text-button">
+          <li><a href="/logout">Log Out</a></li>
+        </div>
+        {{/isAuthenticated}}
        </ul>
         </div>
     </div>
@@ -366,6 +372,45 @@ var createspan = document.getElementsByClassName("close")[1];
 
 var signup = document.getElementById("sign_up");
 var createToLog = document.getElementById("create_to_log");
+var login = document.getElementById("login-submit");
+var register = document.getElementById("register-submit");
+
+// handles login
+login.onclick = function() {
+  console.log("login");
+  var user = document.getElementById("email").value;
+  var pass = document.getElementById("password").value;
+
+  console.log(user);
+  console.log(pass);
+
+  $.post('/login', {username: user, password: pass});
+}
+
+// handles registration
+register.onclick = function() {
+  console.log("register");
+  var user = document.getElementById("register-email").value;
+  var pass = document.getElementById("register-password").value;
+  var confirm = document.getElementById("register-confirm-password").value;
+  var agree = document.getElementById("confirm-chk").checked;
+
+  console.log(user);
+  console.log(pass);
+  console.log(confirm);
+  console.log(agree);
+
+  if (agree) {
+    if (confirm == pass) {
+      $.post('/register', {username: user, password: pass});
+    } else {
+      window.alert('Password must match confirmed password');
+    }
+  } else {
+    window.alert('Must agree to Terms');
+  }
+
+};
 
 signup.onclick = function(){
    loadmodal.style.display = "none";
