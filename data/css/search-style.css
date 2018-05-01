@@ -18,6 +18,7 @@
 	position: relative;
 	top: 2px;
     font-family: 'Josefin Sans', sans-serif;
+    cursor: default;
 }
 
 #new_recipe, #recipe_inspo{
@@ -101,13 +102,14 @@ a {
 }
 
 
-
 #profile_icon{
-	width: 32px;
-	height: auto;
-	border: black 1px solid;
+	width: 35px;
+	height: 35px;
+	overflow: hidden;
 	border-radius: 50%;
 	position: relative;
+	
+
 
 }
 

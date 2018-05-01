@@ -4,6 +4,26 @@ html, body {
     clear: both;
     
 }
+.editing {
+	display: none;
+}
+
+
+#edits {
+	float: right;
+	cursor: default;
+	display: inline-block;
+
+}
+
+
+#close_icon:hover , #add_icon:hover {
+	cursor: pointer;
+	background-color: silver;
+	border-radius: 50%;
+}
+
+
 
 html{
     overflow-y: scroll;
@@ -22,7 +42,7 @@ html{
 	margin-left: 10px;
 	position: relative;
 	top: 2px;
-    
+    cursor: default;
 }
 
 #new_recipe, #recipe_inspo{
@@ -51,10 +71,13 @@ html{
 	height: 25px;
 }
 
-
-
-#add_icon, #search_icon{
+#search_icon{
 	width: 20px;
+	height: auto;
+}
+
+#add_icon,  #close_icon{
+	width: 18px;
 	height: auto;
 }
 
@@ -77,7 +100,7 @@ a {
 	text-decoration: none;
 	color: black;
 }
-#search_icon, #add_icon, #inspo_icon{
+#search_icon{
 	position: relative;
 	top: 5px;
 }
@@ -124,12 +147,12 @@ a {
 	margin: auto 0;
 	margin-top: 24px;
 	margin-bottom: 73px;
+	text-transform: capitalize;
 }
 
 #edit_icon{
 	width: 1em;
 	height: 1em;
-	display: inline-block;
 	position: relative;
 	left: 2px;
 	top: 4px;
@@ -160,29 +183,59 @@ a {
 
 #profile_photo{
 	border-radius: 50%;
-	width: 13%;
-	height: auto;
+	width: 150px;
+	height: 150px;
+	overflow: hidden;
 	border: white 10px solid;
 	position: absolute;
-	left: 15%;
+	left: 10%;
 	top: -18%;
 }
 
-#profile_photo:hover {
-	-webkit-filter: grayscale(100%);
-	
+#frmUploader{
+	z-index: 2;
+	height: 80px;
 }
 
 
-#profile_icon{
-	width: 30px;
-	height: auto;
-	border: black 1px solid;
-	border-radius: 50%;
-	position: relative;
-	
+.upload-btn-wrapper {
+  position: relative;
+  overflow: hidden;
+  display: block;
+}
+
+.editbtn {
+  border: 2px solid gray;
+  color: gray;
+  background-color: white;
+  padding: 8px 20px;
+  border-radius: 8px;
+  font-size: 15px;
+  font-weight: bold;
+  margin-left: 80px;
+}
+
+.savebtn{
+ border: 2px solid gray;
+  color: gray;
+  background-color: white;
+  padding: 8px 20px;
+  border-radius: 8px;
+  font-size: 15px;
+  font-weight: bold;
+  margin-top:  4px;
+ position: relative;
+ left: 140px;
 
 
+}
+
+.upload-btn-wrapper input[type=file] {
+  font-size: 100px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  opacity: 0;
 }
 
 #cropped {
@@ -256,6 +309,7 @@ a {
 
 .weather {
     font-family: "Josefin Sans";
+ 
 }
 
 

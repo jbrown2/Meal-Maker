@@ -10,11 +10,14 @@ var session = require('express-session');
 var passport = require('passport');
 var LocalStrategy = require('passport-local').Strategy;
 var bcrypt = require('bcrypt');
+var multer = require('multer');
+
 const saltRounds = 10;
 
 var engines = require('consolidate');
 app.engine('html', engines.hogan);
 var path = require('path');
+var fs = require('fs');
 app.set('views', __dirname);
 app.set('view engine', 'html');
 app.use(express.static(__dirname));
@@ -74,11 +77,18 @@ app.get('/', function(request, response) {
 	console.log('home page');
 	console.log(request.user);
 	console.log(request.isAuthenticated());
-	response.render('html/specialdishes.html');
+
+ 	  response.status(200).type('html');
+ 	  if(request.isAuthenticated()){
+ 	  	response.render('html/specialdishes.html', {profile: request.user.user_id});
+ 	  }else {
+ 	  	response.render('html/specialdishes.html');
+ 	  }
+	
 });
 
 app.get('/search/:query', function(request, response) {
-	response.render('html/search.html', {query: queryGLOBAL});
+	response.render('html/search.html', {query: queryGLOBAL, profile: request.user.user_id});
 });
 
 app.get('/login', function(req, res) {
@@ -86,9 +96,12 @@ app.get('/login', function(req, res) {
 })
 
 // handles a login request
-app.post('/login', passport.authenticate('local', {
+app.post('/login', passport.authenticate('local', 
+	{
+
 	successRedirect: '/',
-	failureRedirect: '/'
+	failureRedirect: '/login',
+	successFlash: true
 }));
 
 app.get('/logout', function(req, res) {
@@ -145,7 +158,15 @@ passport.deserializeUser(function(user_id, done) {
 })
 
 app.get('/profile', authenticationMiddleware(), function(request, response) {
-	response.render('html/profile.html');
+
+	db.connection.query('SELECT username from user WHERE id = ?', [request.user.user_id], function(err, results) {
+		if (err) throw(err);
+		// if no results are found, user does not exist in database)
+
+		
+
+		response.render('html/profile.html',{user: results[0].username, profile: request.user.user_id}  );
+});
 });
 
 function authenticationMiddleware() {
@@ -273,7 +294,7 @@ app.get('/recipe/:id', function(request, response) {
 	.header("X-Mashape-Host", "spoonacular-recipe-food-nutrition-v1.p.mashape.com")
 	.end(function (result) {
 
-	  response.render('html/inside-recipe.html', {id: request.params.id, RecipeName: result.body.title, Img: result.body.image, Min: result.body.readyInMinutes, Diff: 'Easy', TotIng: result.body.extendedIngredients.length , Serv: result.body.servings});
+	  response.render('html/inside-recipe.html', {id: request.params.id, RecipeName: result.body.title, Img: result.body.image, Min: result.body.readyInMinutes, Diff: 'Easy', TotIng: result.body.extendedIngredients.length , Serv: result.body.servings, profile: request.user.user_id});
 
 	});
 
@@ -292,6 +313,61 @@ app.get('/recipe-info/:id', function(request, response) {
 		response.json([ingredients, instructions]);
 	});
 });
+
+
+ var profile_storage = multer.diskStorage({
+     destination: function(req, file, callback) {
+         callback(null, "./data/profile_images");
+     },
+     filename: function(req, file, callback) {
+     	var name = req.user.user_id;
+     
+         callback(null, name + ".png");
+     }
+ });
+var uploadprofile = multer({
+     storage: profile_storage
+ }).array("imgUploader", 3); //Field name and max count
+
+app.get("/uploadprofile", function(req, res) {
+     res.sendFile(__dirname + "html/profile.html");
+ });
+ app.post("/uploadprofile", function(req, res) {
+     uploadprofile(req, res, function(err) {
+         if (err) {
+             return res.end("Something went wrong! Press back in your browser!");
+         }
+         res.redirect('/profile');
+     });
+ });
+
+
+var cover_storage = multer.diskStorage({
+     destination: function(req, file, callback) {
+         callback(null, "./data/cover_photos");
+     },
+     filename: function(req, file, callback) {
+     	var name = req.user.user_id;
+     
+         callback(null, name + ".png");
+     }
+ });
+var uploadcover = multer({
+     storage: cover_storage
+ }).array("imgUploader", 3); //Field name and max count
+
+app.get("/uploadcover", function(req, res) {
+
+     res.sendFile(__dirname + "html/profile.html");
+ });
+ app.post("/uploadcover", function(req, res) {
+     uploadcover(req, res, function(err) {
+         if (err) {
+             return res.end("Something went wrong! Press back in your browser!");
+         }
+         res.redirect('/profile');
+     });
+ });
 
 app.post('/', function(request, response) {
 	var protocol = request.protocol;

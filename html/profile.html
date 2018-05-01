@@ -4,7 +4,7 @@
 
 	<meta charset="utf-8">
 
- 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+ 	<script src="https://code.jquery.com/jquery-1.10.2.js"></script>
 
 	<link href="https://fonts.googleapis.com/css?family=Josefin+Sans" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Merriweather:400,900" rel="stylesheet">
@@ -25,7 +25,7 @@
 		<div id="nav_bar_container">
 		            <div id="nav_bar">
 		              <div id="logo" class="weather">
-		                <p> MealMaker </p>
+		                MealMaker 
 		              </div>
 
 		      <div id="search_bar">
@@ -38,7 +38,7 @@
 
 		      <ul class="nav_buttons">
 		        {{#isAuthenticated}}
-		        <li> <a href="" id="inspirations"> <img id="inspo_icon" alt="inspiration icon" src="../data/images/inspo_icon.png"/>
+		        <li> <a href="/" id="inspirations"> <img id="inspo_icon" alt="inspiration icon" src="../data/images/inspo_icon.png"/>
 		        <h4 id="recipe_inspo"> RECIPE INSPIRATIONS </h4></a> </li>
 		        {{/isAuthenticated}}
 		        {{#notAuthenticated}}
@@ -52,7 +52,7 @@
 		        {{/notAuthenticated}}
 		        {{#isAuthenticated}}
 		        <div id="profileIcon">
-		          <li> <img id="profile_icon" alt="user's image" src="../data/images/default-user.png"/></li>
+		          <li> <img id="profile_icon" alt="user's image" src= "../data/profile_images/{{profile}}.png" onerror="this.src='../data/images/default-user.png'"/></li>
 		        </div>
 		        <div id="logout" class="text-button">
 		          <li><a href="/logout">Log Out</a></li>
@@ -66,14 +66,50 @@
 
         <div id="profile-main">
         <sixtyPX></sixtyPX>
-		<h1 id="profile_title"> User's Profile</h1>
-		<!-- Javascript for user's name -->
+        <div id="edits" >
+        	<a id="edit_text">Edit Profile</a>
+
+        	                                        
+
+        	<img id="edit_icon" alt="edit profile img" src="../data/images/edit_icon.png"/>
+        </div>
+
+		<h1 id="profile_title"> {{user}}'s Profile</h1>
+		
+	
 
 		<div id="full_cover">
-			<img id="profile_photo" alt="user's image" src="../data/images/default-user.png"/>
+			<div id="cropped"><img id="profile_photo" alt="user's image" src= "../data/profile_images/{{profile}}.png" onerror="this.src='../data/images/default-user.png'"/>
+			</div>
+				<div class= "editing" >
+					 <form id="frmUploader" enctype="multipart/form-data" action="/uploadprofile/" method="post">
+					 	<div class="upload-btn-wrapper">
+  						<button class="editbtn">Change Profile Picture</button>
+					  	<input type="file" name="imgUploader" multiple />
+					  	</div>
+					
+					   <button class="savebtn">Save</button>
+				
+			        
+		    		</form>   
+			
+			</div>
 			<!-- javascript for user's image -->
-			<h2 id="last_updated"> <span> last updated March 15, 2017 </span> </h2>
-			<div id="cropped"> <img id="cover_photo" alt="user's cover photo" src="../data/images/crepes.jpg"/></div>
+			<h2 id="last_updated"> <span id="date"> </span> </h2>
+			<div id="cropped"> <img id="cover_photo" alt="user's cover photo" src="../data/cover_photos/{{profile}}.png" onerror="this.src='../data/images/crepes.jpg'"/></div>
+				<div class= "editing" >
+					 <form id="frmUploader" enctype="multipart/form-data" action="/uploadcover/" method="post">
+					 	<div class="upload-btn-wrapper">
+  						<button class="editbtn">Change Cover Photo</button>
+					  	<input type="file" name="imgUploader" multiple />
+					  	</div>
+					
+					   <button class="savebtn">Save</button>
+				
+			        
+		    		</form>   
+			
+			</div>
 
 			<!-- javascript for date -->
 
@@ -88,17 +124,22 @@
 
 
 
-			<img id="edit_icon" alt="edit dietary preferences" src="../data/images/edit_icon.png">
+			<img  class="editing" id="add_icon" alt="edit dietary preferences" src="../data/images/add_icon.png">
 
             <twentyPX></twentyPX>
 
 			<!-- javascript for adding more dietary options -->
 
             <div style="position: relative;">
-			<p class="diet_type"> Dairy Free </p>
+			<div class="diet_type"> Dairy Free  
+				<img  class="editing" id="close_icon" alt="edit dietary preferences" src="../data/images/close_icon.png"/>
+			</div>
 
-            <p class="diet_type"> Nut Allergic </p>
-            <p class="diet_type"> Seafood Hatred </p>
+            <div class="diet_type"> Nut Allergy
+            <img  class="editing" id="close_icon" alt="edit dietary preferences" src="../data/images/close_icon.png"/> </div>
+            <div class="diet_type"> Seafood Hatred 
+            	<img  class="editing" id="close_icon" alt="edit dietary preferences" src="../data/images/close_icon.png"/>
+            </div>
             </div>
 
 
@@ -109,14 +150,86 @@
 		<div id="favorites">
 
 				<h4 id="fav_title"> Favorite Dishes</h4>
-				<img id="edit_icon" alt="edit dietary preferences" src="../data/images/edit_icon.png">
+				<img id="add_icon"  class="editing" alt="edit dietary preferences" src="../data/images/add_icon.png">
 
 			<!-- javascript for favorite dish info  -->
 
 		</div>
         </div>
 
+        <script>
 
+        		// figuring out date info
+        	const monthNames = [ "January", "February", "March", "April", "May", "June",
+		  "July", "August", "September", "October", "November", "December"
+		];
+
+		const compliments =["You look great day!", "Hope you are enjoying your day!", "What a great time to make a meal!", "Cooking is an art.", "When cooking, go by your own taste.", "Isn't food just the best!", "Eating with friends is time well spent", "If there's a whisk, there's a way.", "People who love to eat are always the best people.", "Nothing brings people together like good food.", "Worries go down better with soup.", "Good food is good mood.", "Good food is wise medicine.", "Life is a combination of passion + pasta", "Breakfast is the most important meal of the day!", "Life is uncertain; eat dessert first!" ];
+        	
+
+        	$(window).resize(function() {
+				if($(window).width() <= 650){
+					alert("Please enlargen your browser!");
+				}
+			});
+        	$(document).ready(function() {
+        		var comp = compliments[Math.floor(Math.random()*compliments.length)];
+
+				$(date).text(comp);
+
+        	});
+        	
+
+        	var showedits=	document.getElementsByClassName("editing");
+
+        	var edittext = document.getElementById("edit_text");
+        	var forms = document.getElementById("frmUploader");
+        	
+				var date = 	document.getElementById("date");
+
+			$("#edits").click(function(){
+
+				
+				if($(edittext).text() === "Edit Profile"){
+					forms.style.display = 'block';
+					for (var i=0; i<showedits.length;i++){
+	    				showedits[i].style.display='inline-block';
+					}
+					$(edittext).text( "Done Editing");
+					$(date).text("updating profile . . .");
+
+				} else {
+						forms.style.display = 'block';
+					for (var i=0; i<showedits.length;i++){
+	    				showedits[i].style.display='none';
+					}
+					$(edittext).text( "Edit Profile");
+				
+				// figuring out date storage
+					var today = new Date();
+					var dd = today.getDate();
+					var mm = today.getMonth()+1; 
+
+					var yyyy = today.getFullYear();
+					if(dd<10){
+					    dd='0'+dd;
+					} 
+					if(mm<10){
+					    mm='0'+mm;
+					} 
+					var today = monthNames[today.getMonth()]+ ' ' +dd+', '+yyyy;
+					// end of figuring out date storage
+
+					var comp = compliments[Math.floor(Math.random()*compliments.length)];
+
+				$(date).text(comp);
+
+
+				}
+
+				
+			});
+        </script>
 
 	</body>
 </html>

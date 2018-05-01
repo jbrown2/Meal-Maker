@@ -21,181 +21,12 @@
 
 
 <body>
-  <!-- login modal -->
-  {{#notAuthenticated}}
-  <div id="Login-Main">
-  <div id="color">
-  <span class="close">&times;</span>
-        <sixtyPX></sixtyPX>
-        <loginH style="color: black;">Welcome To Meal Maker</loginH>
-        <twentyPX></twentyPX>
-        <regtext>Login to Meal Maker</regtext>
-        <fortyPX></fortyPX>
-        <textBub class="facebook-div">
-            <button class="submit-button"></button>
-            <div class="generic-button facebook-btn"></div>
-            <img class="social-icon-login" src="../data/images/Facebook.svg">
-            <regtext class="white-text">Login with Facebook</regtext>
-        </textBub>
-        <twentyPX></twentyPX>
-        <textBub class="google-div">
-            <button class="submit-button"></button>
-            <div class="generic-button google-btn"></div>
-            <img class="social-icon-login" src="../data/images/Google.svg">
-            <regtext class="white-text">Login with Google</regtext>
-        </textBub>
-        <fortyPX></fortyPX>
-        <div class="or-box">
-            <div style="flex: 1">
-                <hr>
-            </div>
-            <regtext style="flex:0.5">OR</regtext>
-            <div style="flex: 1">
-                <hr>
-            </div>
-        </div>
-
-        <fortyPX></fortyPX>
-        <textBub class="input-box">
-            <input id="email" class="input-textbox" placeholder="Email">
-
-        </textBub>
-        <twentyPX></twentyPX>
-        <textBub class="input-box">
-
-            <input id="password" class="input-textbox" type="password" placeholder="Password">
-
-        </textBub>
-        <twentyPX></twentyPX>
-
-        <twentyPX></twentyPX>
-
-
-        <textBub id="submit-parent" class="submit-box">
-            <regtext class="white-text"></regtext>
-            <button id="login-submit" class="submit-button">
-
-            </button>
-
-            <div class="generic-button btn-hover"></div>
-            <regtext class="white-text">Login</regtext>
-
-        </textBub>
-        <fortyPX></fortyPX>
-        <div class="or-box">
-            <div style="flex: 1">
-                <hr>
-            </div>
-            <regtext style="flex:0.5">OR</regtext>
-            <div style="flex: 1">
-                <hr>
-            </div>
-        </div>
-        <fortyPX></fortyPX>
-
-        <textBub class="signup-box">
-            <regtext class="white-text"></regtext>
-            <button id="sign_up" class="submit-button">
-
-            </button>
-
-            <div class="generic-button signup-btn-hover"></div>
-            <regtext class="pink-text">Sign Up</regtext>
-
-        </textBub>
-
-        <sixtyPX></sixtyPX>
-
-
-
-    </div>
-      <sixtyPX></sixtyPX>
-    </div>
-    {{/notAuthenticated}}
-    <!-- Create Account -->
-        <div id="SignUp-Main">
-          <div id="color">
-            <span class="close">&times;</span>
-
-        <sixtyPX></sixtyPX>
-        <loginH style="color:black;">Sign Up for Meal Maker</loginH>
-        <twentyPX></twentyPX>
-        <regtext>Create Your Account</regtext>
-        <fortyPX></fortyPX>
-
-
-        <textBub class="input-box">
-            <input id="register-email" class="input-textbox" placeholder="Email">
-
-        </textBub>
-        <twentyPX></twentyPX>
-        <textBub class="input-box">
-
-            <input id="register-password" class="input-textbox" type="password" placeholder="Password">
-
-        </textBub>
-
-        <twentyPX></twentyPX>
-        <textBub class="input-box">
-
-            <input id="register-confirm-password" class="input-textbox" type="password" placeholder="Confirm Password">
-
-        </textBub>
-
-        <twentyPX></twentyPX>
-        <div class="chk-box">
-            <input id="confirm-chk" type="checkbox">
-            <regtext style="color:#979797">I agree to the Terms of Service</regtext>
-        </div>
-        <twentyPX></twentyPX>
-
-
-        <textBub id="submit-parent" class="submit-box">
-            <regtext class="white-text"></regtext>
-            <button id="register-submit" class="submit-button">
-
-            </button>
-
-            <div class="generic-button btn-hover"></div>
-            <regtext class="white-text">Create Account</regtext>
-
-        </textBub>
-        <fortyPX></fortyPX>
-        <div class="or-box">
-            <div style="flex: 1">
-                <hr>
-            </div>
-            <regtext style="flex:0.5">OR</regtext>
-            <div style="flex: 1">
-                <hr>
-            </div>
-        </div>
-        <fortyPX></fortyPX>
-
-        <textBub class="signup-box">
-            <regtext class="white-text"></regtext>
-            <button id="create_to_log" class="submit-button">
-
-            </button>
-
-            <div class="generic-button signup-btn-hover"></div>
-            <regtext class="pink-text">Login</regtext>
-
-        </textBub>
-
-        <sixtyPX></sixtyPX>
-
-
-    </div>
-            <sixtyPX></sixtyPX>
-
-  </div>
-
+ 
 <!-- nav bar -->
 <div id="nav_bar_container">
             <div id="nav_bar">
               <div id="logo" class="weather">
-                <p> MealMaker </p>
+                 MealMaker
               </div>
 
       <div id="search_bar">
@@ -222,7 +53,7 @@
         {{/notAuthenticated}}
         {{#isAuthenticated}}
         <div id="profileIcon">
-          <li> <img id="profile_icon" alt="user's image" src="../data/images/default-user.png"/></li>
+          <li> <img id="profile_icon" alt="user's image" src= "../data/profile_images/{{profile}}.png" onerror="this.src='../data/images/default-user.png'"/></li>
         </div>
         <div id="logout" class="text-button">
           <li><a href="/logout">Log Out</a></li>

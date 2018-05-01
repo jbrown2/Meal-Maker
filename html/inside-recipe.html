@@ -46,7 +46,7 @@
 		        {{/notAuthenticated}}
 		        {{#isAuthenticated}}
 		        <div id="profileIcon">
-		          <li> <img id="profile_icon" alt="user's image" src="../data/images/default-user.png"/></li>
+		          <li> <img id="profile_icon" alt="user's image" src= "../data/profile_images/{{profile}}.png" onerror="this.src='../data/images/default-user.png'"/></li>
 		        </div>
 		        <div id="logout" class="text-button">
 		          <li><a href="/logout">Log Out</a></li>

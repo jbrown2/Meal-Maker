@@ -105,15 +105,6 @@ a {
 
 
 
-#profile_icon{
-	width: 32px;
-	height: auto;
-	border: black 1px solid;
-	border-radius: 50%;
-	position: relative;
-
-}
-
 @media screen and (max-width: 1140px) {
     #new_recipe, #recipe_inspo { display: none; }
     .nav_buttons {
