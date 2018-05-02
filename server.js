@@ -170,7 +170,7 @@ app.get('/profile', authenticationMiddleware(), function(request, response) {
 		// if no results are found, user does not exist in database)
 
 		
-		
+
 		response.render('html/profile.html',{user: results[0].username, profile: request.user.user_id}  );
 });
 });
@@ -300,10 +300,15 @@ app.get('/recipe/:id', function(request, response) {
 	.header("X-Mashape-Host", "spoonacular-recipe-food-nutrition-v1.p.mashape.com")
 	.end(function (result) {
 
-		if(req.isAuthenticated()){
+		if(request.isAuthenticated()){
+			console.log("WE IN THIS THANG BREH");
+			console.log(result.body.extendedIngredients);
+
 			 response.render('html/inside-recipe.html', {id: request.params.id, RecipeName: result.body.title, Img: result.body.image, Min: result.body.readyInMinutes, Diff: 'Easy', TotIng: result.body.extendedIngredients.length , Serv: result.body.servings, profile: request.user.user_id});
 
 			}else {
+				console.log("PRINTING INGREDIENTS");
+			console.log(result.body.extendedIngredients);
 				 response.render('html/inside-recipe.html', {id: request.params.id, RecipeName: result.body.title, Img: result.body.image, Min: result.body.readyInMinutes, Diff: 'Easy', TotIng: result.body.extendedIngredients.length , Serv: result.body.servings});
 
 			}
