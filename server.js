@@ -42,8 +42,8 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 passport.use(new LocalStrategy(function (username, password, done) {
-	console.log(username);
-	console.log(password);
+	// console.log(username);
+	// console.log(password);
 	// get password hash corresponding to entered username
 	db.connection.query('SELECT id, password FROM user WHERE username = ?', [username], function(err, results) {
 		if (err) done(err);
@@ -51,7 +51,7 @@ passport.use(new LocalStrategy(function (username, password, done) {
 		if (results.length === 0) {
 			done(null, false);
 		} else {
-			console.log(results[0].password.toString())
+			// console.log(results[0].password.toString())
 			const hash = results[0].password.toString();
 
 			bcrypt.compare(password, hash, function(err, response) {
@@ -74,9 +74,9 @@ app.use(function(req, res, next) {
 })
 
 app.get('/', function(request, response) {
-	console.log('home page');
-	console.log(request.user);
-	console.log(request.isAuthenticated());
+// 	console.log('home page');
+// 	console.log(request.user);
+// 	console.log(request.isAuthenticated());
 
  	  response.status(200).type('html');
  	  if(request.isAuthenticated()){
@@ -88,7 +88,11 @@ app.get('/', function(request, response) {
 });
 
 app.get('/search/:query', function(request, response) {
+		  if(request.isAuthenticated()){
 	response.render('html/search.html', {query: queryGLOBAL, profile: request.user.user_id});
+} else {
+	response.render('html/search.html', {query: queryGLOBAL});
+}
 });
 
 app.get('/login', function(req, res) {
@@ -111,7 +115,7 @@ app.get('/logout', function(req, res) {
 });
 
 app.get('/register', function(req, res) {
-	console.log("hi");
+	// console.log("hi");
 	res.render('html/register.html');
 });
 
@@ -127,11 +131,11 @@ app.post('/register', function(req, res) {
 		console.log(`errors: , ${JSON.stringify(errors)}`);
 	}*/
 	console.log('registering user');
-	var user = req.body.username;
+	// var user = req.body.username;
 	var pass = req.body.password;
 
-	console.log(user);
-	console.log(pass);
+	// console.log(user);
+	// console.log(pass);
 
 		// hash plaintext password
 		bcrypt.hash(pass, saltRounds, function(err, hash) {
@@ -139,7 +143,7 @@ app.post('/register', function(req, res) {
 				if (err) console.log(err);
 				db.connection.query('SELECT LAST_INSERT_ID() as user_id', function(error, results) {
 					const user_id = results[0];
-					console.log(results[0]);
+					// console.log(results[0]);
 					req.login(results[0], function(err) {
 						res.redirect('/');
 					});
@@ -171,7 +175,7 @@ app.get('/profile', authenticationMiddleware(), function(request, response) {
 
 function authenticationMiddleware() {
 	return (req, res, next) => {
-		console.log(`req.session.passport.user: ${JSON.stringify(req.session.passport)}`);
+		// console.log(`req.session.passport.user: ${JSON.stringify(req.session.passport)}`);
 
 		if (req.isAuthenticated()) return next();
 

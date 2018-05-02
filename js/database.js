@@ -14,14 +14,14 @@ connection.connect(function(err) {
     return;
   }
 
-  console.log('Connected to database');
+  // console.log('Connected to database');
 
   var createTable = "CREATE TABLE IF NOT EXISTS user ( id INTEGER PRIMARY KEY AUTO_INCREMENT, ";
   createTable += "username CHAR(255), password CHAR(255) )";
 
   connection.query(createTable, function(err, result) {
     if (err) throw err;
-    console.log('Table created');
+    // console.log('Table created');
   });
 });
 
