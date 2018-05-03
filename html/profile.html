@@ -31,6 +31,7 @@
 		      <div id="search_bar">
 		        <form id='form'>
 		          <img id="search_icon" alt="search button" src="../data/images/search_icon.png"/>
+          			<label for="search_box" class="hidden">Search for ingredients, recipe names, etc.</label>
 		          <input id="search_box" type="text" placeholder="Search for ingredients, recipe names...">
 		          <input id="searchSubmitButton" type="submit" value = "Submit">
 		        </form>
@@ -71,7 +72,7 @@
 
         	                                        
 
-        	<img id="edit_icon" alt="edit profile img" src="../data/images/edit_icon.png"/>
+        	<img id="edit_icon" alt="edit profile image" src="../data/images/edit_icon.png"/>
         </div>
 
 		<h1 id="profile_title"> {{user}}'s Profile</h1>
@@ -85,6 +86,7 @@
 					 <form id="frmUploader" enctype="multipart/form-data" action="/uploadprofile/" method="post">
 					 	<div class="upload-btn-wrapper">
   						<button class="editbtn">Change Profile Picture</button>
+
 					  	<input type="file" name="imgUploader" multiple />
 					  	</div>
 					
@@ -124,7 +126,7 @@
 
 
 
-			<img  class="editing" id="add_icon" alt="edit dietary preferences" src="../data/images/add_icon.png">
+			<img  class="editing" id="add_icon" alt="add dietary preferences" src="../data/images/add_icon.png">
 
             <twentyPX></twentyPX>
 
@@ -132,13 +134,13 @@
 
             <div style="position: relative;">
 			<div class="diet_type"> Dairy Free  
-				<img  class="editing" id="close_icon" alt="edit dietary preferences" src="../data/images/close_icon.png"/>
+				<img  class="editing" id="close_icon" alt="remove this dietary preference" src="../data/images/close_icon.png"/>
 			</div>
 
             <div class="diet_type"> Nut Allergy
-            <img  class="editing" id="close_icon" alt="edit dietary preferences" src="../data/images/close_icon.png"/> </div>
+            <img  class="editing" id="close_icon" alt="remove this dietary preference" src="../data/images/close_icon.png"/> </div>
             <div class="diet_type"> Seafood Hatred 
-            	<img  class="editing" id="close_icon" alt="edit dietary preferences" src="../data/images/close_icon.png"/>
+            	<img  class="editing" id="close_icon" alt="remove this dietary preference" src="../data/images/close_icon.png"/>
             </div>
             </div>
 
@@ -150,7 +152,7 @@
 		<div id="favorites">
 
 				<h4 id="fav_title"> Favorite Dishes</h4>
-				<img id="add_icon"  class="editing" alt="edit dietary preferences" src="../data/images/add_icon.png">
+				<img id="add_icon"  class="editing" alt="add favorite dish" src="../data/images/add_icon.png">
 
 			<!-- javascript for favorite dish info  -->
 

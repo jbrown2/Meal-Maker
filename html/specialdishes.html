@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
 
@@ -15,6 +15,8 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <script src="../socket.io/socket.io.js"></script>
   <script src='../js/specialdishes.js'></script>
+  <meta charset="UTF-8">
+  <title> MealMaker</title>
 
 
 </head>
@@ -32,6 +34,7 @@
       <div id="search_bar">
         <form id='form'>
           <img id="search_icon" alt="search button" src="../data/images/search_icon.png"/>
+          <label for="search_box" class="hidden">Search for ingredients, recipe names, etc.</label>
           <input id="search_box" type="text" placeholder="Search for ingredients, recipe names...">
           <input id="searchSubmitButton" type="submit" value = "Submit">
         </form>
@@ -70,21 +73,23 @@
   <div class="slideshow-container">
 
     <div class="mySlides">
-      <img id="dinnerFTWpic" class="dinnerFTWpic1" src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6d/Good_Food_Display_-_NCI_Visuals_Online.jpg/1200px-Good_Food_Display_-_NCI_Visuals_Online.jpg" width=100%>
+      <img  alt="Exemplary Thanksgiving Dinner" id="dinnerFTWpic" class="dinnerFTWpic1" src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6d/Good_Food_Display_-_NCI_Visuals_Online.jpg/1200px-Good_Food_Display_-_NCI_Visuals_Online.jpg" style="width: 100%">
     </div>
 
     <div class="mySlides">
-      <img id="dinnerFTWpic" class="dinnerFTWpic2" src="http://images.mentalfloss.com/sites/default/files/styles/mf_image_16x9/public/521724-istock-545286388.jpg?itok=AF_X9rNF&resize=1100x619" width=100%>
+      <img alt="Chinese Food Display" id="dinnerFTWpic" class="dinnerFTWpic2" src="http://images.mentalfloss.com/sites/default/files/styles/mf_image_16x9/public/521724-istock-545286388.jpg?itok=AF_X9rNF&resize=1100x619" width=100%>
 
     </div>
 
     <div class="mySlides">
-      <img id="dinnerFTWpic" class="dinnerFTWpic3" src="http://i2.cdn.turner.com/money/dam/assets/141224105650-chinese-food-xmas-1024x576.jpg"  width=100%>
+      <img alt="chicken and broccoli" id="dinnerFTWpic" class="dinnerFTWpic3" src="http://i2.cdn.turner.com/money/dam/assets/141224105650-chinese-food-xmas-1024x576.jpg"  width=100%>
     </div>
 
     <div id="dinnerFTWtext-container">
-      <h1 id="dinnerFTWtitle">Dinners for the Week</h1>
-      <h3 id="dinnerFTWtext">efwefwf wefqwefqwdfsdafcasdfaewfqwefwqef wdwqdwefwefwefqwfqwefqwefqwsdfawdfqwefqwefqwefqwefdqwef fwefwefwefwefwef </h3>
+      <h1 id="dinnerFTWtitle">Welcome to MealMaker!</h1>
+      <h3 id="dinnerFTWtext">From the beginner cook to the experienced chef, MealMaker will guide you to making your
+      best meal yet! Search for any food you desire, and MealMaker will find recipes that fit your specific
+      dietary needs.  </h3>
     </div>
 
     <a class="prev" onclick="plusSlides(-1)">&#10094;</a>

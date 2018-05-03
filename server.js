@@ -301,15 +301,10 @@ app.get('/recipe/:id', function(request, response) {
 	.end(function (result) {
 
 		if(request.isAuthenticated()){
-			console.log("WE IN THIS THANG BREH");
-			console.log(result.body.extendedIngredients);
-
 			 response.render('html/inside-recipe.html', {id: request.params.id, RecipeName: result.body.title, Img: result.body.image, Min: result.body.readyInMinutes, Diff: 'Easy', TotIng: result.body.extendedIngredients.length , Serv: result.body.servings, profile: request.user.user_id});
 
 			}else {
-				console.log("PRINTING INGREDIENTS");
-			console.log(result.body.extendedIngredients);
-				 response.render('html/inside-recipe.html', {id: request.params.id, RecipeName: result.body.title, Img: result.body.image, Min: result.body.readyInMinutes, Diff: 'Easy', TotIng: result.body.extendedIngredients.length , Serv: result.body.servings});
+			  response.render('html/inside-recipe.html', {id: request.params.id, RecipeName: result.body.title, Img: result.body.image, Min: result.body.readyInMinutes, Diff: 'Easy', TotIng: result.body.extendedIngredients.length , Serv: result.body.servings});
 
 			}
 	 

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 	<head>
 		<meta charset="utf-8" />
 		<meta name="id" content="{{id}}">
@@ -25,6 +25,7 @@
 		      <div id="search_bar">
 		        <form id='form'>
 		          <img id="search_icon" alt="search button" src="../data/images/search_icon.png"/>
+          			<label for="search_box" class="hidden">Search for ingredients, recipe names, etc.</label>
 		          <input id="search_box" type="text" placeholder="Search for ingredients, recipe names...">
 		          <input id="searchSubmitButton" type="submit" value = "Submit">
 		        </form>
@@ -65,7 +66,7 @@
 			</div>
 			<h1 id="recipe-name">{{RecipeName}}</h1>
 			<div id="recipe-image">
-				<img src="{{Img}}" />
+				<img alt="recipe's image" src="{{Img}}" />
 			</div>
 			<div id="quick-info">
 				<div class="info">
