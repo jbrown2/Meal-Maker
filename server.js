@@ -178,7 +178,7 @@ passport.deserializeUser(function(user_id, done) {
 app.get('/profile', authenticationMiddleware(), function(request, response) {
 
 	db.connection.query('SELECT username from user WHERE id = ?', [request.user.user_id], function (err, result) {
-		response.render('html/profile.html', {user: result[0].username,user_id: request.user.user_id});
+		response.render('html/profile.html', {user: result[0].username, profile: request.user.user_id});
 	});
 });
 

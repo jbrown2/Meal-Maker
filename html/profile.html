@@ -132,7 +132,7 @@
 								<twentyPX></twentyPX>
 
 					<!-- javascript for adding more dietary options -->
-					<div id="chosen-preferences">
+					<div id="chosen-preferences" >
 						<ul id="chosen-list"></ul>
 						<div id="established-intolerances">
 						</div>
@@ -193,15 +193,6 @@
 
 
 
-
-
-        	$(window).resize(function() {
-				if($(window).width() <= 650){
-					alert("Please enlargen your browser!");
-				}
-			});
-
-
         	var showedits=	document.getElementsByClassName("editing");
 
         	var edittext = document.getElementById("edit_text");
@@ -209,23 +200,26 @@
 
 				var date = 	document.getElementById("date");
 
-			$("#edits").click(function(){
+		const compliments =["You look great day!", "Hope you are enjoying your day!", "What a great time to make a meal!", "Cooking is an art.", "When cooking, go by your own taste.", "Isn't food just the best!", "Eating with friends is time well spent", "If there's a whisk, there's a way.", "People who love to eat are always the best people.", "Nothing brings people together like good food.", "Worries go down better with soup.", "Good food is good mood.", "Good food is wise medicine.", "Life is a combination of passion + pasta", "Breakfast is the most important meal of the day!", "Life is uncertain; eat dessert first!" ];
 
+	
+			$("#edits").click(function(){
+				forms.style.display = "block";
 
 				if($(edittext).text() === "Edit Profile"){
-					forms.style.display = 'block';
 					for (var i=0; i<showedits.length;i++){
 	    				showedits[i].style.display='inline-block';
 					}
 					$(edittext).text( "Done Editing");
 					$(date).text("updating profile . . .");
 
-				} else {
-						forms.style.display = 'block';
-					for (var i=0; i<showedits.length;i++){
+				} else {					for (var i=0; i<showedits.length;i++){
 	    				showedits[i].style.display='none';
 					}
 					$(edittext).text( "Edit Profile");
+					var comp = compliments[Math.floor(Math.random()*compliments.length)];
+
+					$(date).text(comp);
 
 
 				}
