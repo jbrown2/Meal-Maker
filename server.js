@@ -84,7 +84,7 @@ app.get('/', function(request, response) {
  	  }else {
  	  	response.render('html/specialdishes.html');
  	  }
-	
+
 });
 
 app.get('/search/:query', function(request, response) {
@@ -102,12 +102,9 @@ app.get('/login', function(req, res) {
 })
 
 // handles a login request
-app.post('/login', passport.authenticate('local', 
-	{
-
+app.post('/login', passport.authenticate('local', {
 	successRedirect: '/',
-	failureRedirect: '/login',
-	successFlash: true
+	failureRedirect: '/login'
 }));
 
 app.get('/logout', function(req, res) {
@@ -117,43 +114,58 @@ app.get('/logout', function(req, res) {
 });
 
 app.get('/register', function(req, res) {
-	// console.log("hi");
 	res.render('html/register.html');
 });
 
-// handles a registration request
 app.post('/register', function(req, res) {
-	// validate user input
-	/*
-	req.checkBody('username', 'Email cannot be empty.').notEmpty();
 
-	const errors = req.validationrrors();
+	req.checkBody('username', 'Username cannot be empty.').notEmpty();
+	req.checkBody('username', 'Username must be between 4 and 15 characters in length.').len(4, 15);
+	req.checkBody('password', 'Password must be between 8 and 50 characters in length.').len(8, 50);
+	req.checkBody('confirmPassword', 'Passwords do not match, please try again.').equals(req.body.password);
 
-	if (errors) {
-		console.log(`errors: , ${JSON.stringify(errors)}`);
-	}*/
-	console.log('registering user');
-	// var user = req.body.username;
-	var pass = req.body.password;
+	const errors = req.validationErrors();
+	//console.log(req.body.terms);
+	if (errors || (req.body.terms == undefined)) {
+		//console.log(`errors: , ${JSON.stringify(errors)}`);
+		res.render('html/register.html', {badinput: true, errors: errors});
+	} else {
+		//console.log('registering user');
+		//console.log(req.body);
+		var user = req.body.username;
+		var pass = req.body.password;
 
-	// console.log(user);
-	// console.log(pass);
+		//console.log(user);
+		//console.log(pass);
+		db.connection.query('SELECT * FROM user WHERE username = ?', [user], function(err, result) {
+			if (result.length == 0) {
+				// user name is valid, hash plaintext password and add to database
+				bcrypt.hash(pass, saltRounds, function(err, hash) {
+					db.connection.query('INSERT INTO user (username, password) VALUES (?, ?)', [user, hash], function(err, results) {
+						//if (err) console.log(err);
 
-		// hash plaintext password
-		bcrypt.hash(pass, saltRounds, function(err, hash) {
-			db.connection.query('INSERT INTO user (username, password) VALUES (?, ?)', [user, hash], function(err, results) {
-				if (err) console.log(err);
-				db.connection.query('SELECT LAST_INSERT_ID() as user_id', function(error, results) {
-					const user_id = results[0];
-					// console.log(results[0]);
-					req.login(results[0], function(err) {
-						res.redirect('/');
+						db.connection.query('SELECT LAST_INSERT_ID() as user_id', function(error, results) {
+							const user_id = results[0];
+							var pref = 'INSERT INTO preferences (pesc, lactoveg, ovoveg, vegetarian, vegan, paleo, primal, intolerances) VALUES (?, ?, ?, ?, ?, ?, ?, ?)';
+
+							db.connection.query(pref, ['false', 'false', 'false','false', 'false', 'false', 'false', 'None'], function(err, result3) {
+								if (err) console.log(err);
+								console.log(result3);
+								req.login(user_id, function(err) {
+									res.redirect('/');
+								});
+							});
+						});
 					});
 				});
-			});
+			} else {
+				// username is already taken, redirect to registration
+				res.render('html/register.html');
+			}
 		});
-
+	}
 });
+
 
 passport.serializeUser(function(user_id, done) {
 	done(null, user_id);
@@ -165,19 +177,105 @@ passport.deserializeUser(function(user_id, done) {
 
 app.get('/profile', authenticationMiddleware(), function(request, response) {
 
-	db.connection.query('SELECT username from user WHERE id = ?', [request.user.user_id], function(err, results) {
-		if (err) throw(err);
-		// if no results are found, user does not exist in database)
-
-		
-
-		response.render('html/profile.html',{user: results[0].username, profile: request.user.user_id}  );
+	db.connection.query('SELECT username from user WHERE id = ?', [request.user.user_id], function (err, result) {
+		response.render('html/profile.html', {user: result[0].username,user_id: request.user.user_id});
+	});
 });
+
+
+app.get('/preferences', authenticationMiddleware(), function(req, res) {
+	var sql = 'SELECT pesc, lactoveg, ovoveg, vegetarian, vegan, paleo, primal, intolerances FROM preferences WHERE id = ?';
+	//var sql = 'SELECT * FROM preferences WHERE user_id = ?';
+	db.connection.query(sql, [req.user.user_id], function(err, result) {
+		if (err) throw err;
+		console.log(result);
+		res.json([result]);
+	});
+});
+
+app.post('/add-diet', authenticationMiddleware(), function(req, res){
+	var user_id = req.body.user_id;
+	var diet = req.body.diet;
+	console.log(user_id);
+	console.log(diet);
+
+	var sql = 'UPDATE preferences SET ' + diet + ' = true WHERE id = ?';
+	console.log(sql);
+	db.connection.query(sql, [user_id], function(err, result) {
+		if (err) throw err;
+		console.log(result);
+		res.end();
+	});
+});
+
+app.post('/remove-diet', authenticationMiddleware(), function(req, res){
+	var user_id = req.body.user_id;
+	var diet = req.body.diet;
+	console.log(user_id);
+	console.log(diet);
+
+	var sql = 'UPDATE preferences SET ' + diet + ' = false WHERE id = ?';
+
+	db.connection.query(sql, [user_id], function(err, result) {
+		if (err) throw err;
+		res.end();
+	});
+});
+
+app.post('/add-intolerances', authenticationMiddleware(), function(req, res) {
+	var user_id = req.body.user_id;
+	var intolerances = req.body.intol;
+	console.log(user_id);
+
+	var sql = 'UPDATE preferences SET intolerances = ? WHERE id = ?';
+
+	db.connection.query(sql, [intolerances, user_id], function(err, result) {
+		if (err) throw err;
+		console.log(result);
+		res.end();
+	});
+});
+
+app.post('/fav/:id', authenticationMiddleware(), function(req, res) {
+	console.log(req.user.user_id);
+	console.log(req.params.id);
+	console.log(req.body.title);
+	console.log(req.body.image);
+	// add to favorites database table
+
+	var sql = "INSERT IGNORE INTO favs (recipe, user_id, name, image) VALUES (?, ?, ?, ?)";
+
+	db.connection.query(sql, [req.params.id, req.user.user_id, req.body.title, req.body.image], function(error, result) {
+		if (error) throw error;
+		res.end();
+	});
+});
+
+app.post('/unfav', authenticationMiddleware(), function(req, res) {
+	console.log(req.user.user_id);
+	console.log(req.body.recipe);
+
+	var sql = "DELETE FROM favs WHERE recipe = ? AND user_id = ?";
+
+	db.connection.query(sql, [req.body.recipe, req.user.user_id], function(err, res) {
+		if (err) console.log(err);
+	});
+});
+
+app.get('/fav', authenticationMiddleware(), function(req, res) {
+	console.log(req.user.user_id);
+	// get user's favorites from database
+	var sql = "SELECT recipe, name, image FROM favs WHERE user_id = ?";
+
+	db.connection.query(sql, [req.user.user_id], function(error, result) {
+		if (error) throw error;
+
+		res.json([result]);
+	})
 });
 
 function authenticationMiddleware() {
 	return (req, res, next) => {
-		// console.log(`req.session.passport.user: ${JSON.stringify(req.session.passport)}`);
 
 		if (req.isAuthenticated()) return next();
 
@@ -307,7 +405,7 @@ app.get('/recipe/:id', function(request, response) {
 			  response.render('html/inside-recipe.html', {id: request.params.id, RecipeName: result.body.title, Img: result.body.image, Min: result.body.readyInMinutes, Diff: 'Easy', TotIng: result.body.extendedIngredients.length , Serv: result.body.servings});
 
 			}
-	 
+
 	});
 
 });
@@ -333,7 +431,7 @@ app.get('/recipe-info/:id', function(request, response) {
      },
      filename: function(req, file, callback) {
      	var name = req.user.user_id;
-     
+
          callback(null, name + ".png");
      }
  });
@@ -360,7 +458,7 @@ var cover_storage = multer.diskStorage({
      },
      filename: function(req, file, callback) {
      	var name = req.user.user_id;
-     
+
          callback(null, name + ".png");
      }
  });

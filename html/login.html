@@ -15,7 +15,6 @@
     <!--[if lt IE 9]>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.js"></script>
   <![endif]-->
-  <title>Login to MealMaker</title>
 </head>
 
 <body>
@@ -30,34 +29,25 @@
         <loginH>Welcome To Meal Maker</loginH>
         <twentyPX></twentyPX>
         <regtext>Login to Meal Maker</regtext>
+        <fortyPX></fortyPX>
 
         <fortyPX></fortyPX>
+        <form id="login-user" action="/login" method="post">
         <textBub class="input-box">
-              <label for="user" class="hidden">Enter Username: </label>
-            <input id="user" class="input-textbox" placeholder="Username">
+            <input type="text" name="username" class="input-textbox" placeholder="Username">
 
         </textBub>
         <twentyPX></twentyPX>
         <textBub class="input-box">
-            <label for="pass" class="hidden">Enter Password: </label>
-            <input id="pass" class="input-textbox" type="password" placeholder="Password">
+
+            <input type="password" name="password" class="input-textbox" placeholder="Password">
 
         </textBub>
         <twentyPX></twentyPX>
 
         <twentyPX></twentyPX>
-
-
-        <textBub id="submit-parent" class="submit-box">
-            <regtext class="white-text"></regtext>
-            <button id="login" class="submit-button">
-
-            </button>
-
-            <div class="generic-button btn-hover"></div>
-            <regtext class="white-text">Login</regtext>
-
-        </textBub>
+            <input id="login" type="submit" value="Login"/>
+        </form>
         <fortyPX></fortyPX>
         <div class="or-box">
             <div style="flex: 1">
@@ -86,7 +76,7 @@
     </div>
 
 <script>
-
+/*
 var login = document.getElementById("login");
 
 login.onclick = function() {
@@ -100,7 +90,7 @@ login.onclick = function() {
   $.post('/login', {username: user, password: pass}, function(err, res) {
     console.log(res);
   });
-}
+}*/
 
 var register = document.getElementById("register");
 

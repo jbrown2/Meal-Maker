@@ -40,5 +40,6 @@
   "bugs": {
     "url": "https://github.com/jbrown2/Meal-Maker/issues"
   },
-  "homepage": "https://github.com/jbrown2/Meal-Maker#readme"
+  "homepage": "https://github.com/jbrown2/Meal-Maker#readme",
+  "devDependencies": {}
 }

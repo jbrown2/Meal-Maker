@@ -206,6 +206,26 @@ textBub{
     height: 36px;
 }
 
+#register-submit {
+  color: white;
+  background: none;
+  border: none;
+  font-family: 'Josefin Sans', sans-serif;
+  vertical-align: middle;
+  font-size: 20px;
+}
+ #login {
+   font-family: 'Josefin Sans', sans-serif;
+   color: white;
+   background-color: #FB4D58 ;
+   width: 360px;
+   height: 52px;
+   border-radius: 5px;
+   border-color:#FB4D58 ;
+   border-width: 1px;
+   font-size: 20px;
+ }
+
 
 
 .or-box {
@@ -354,4 +374,33 @@ input[type=checkbox] {
 .google-btn {
     background-color: #518EF8;
 
+}
+
+
+.error-msg {
+  border: solid;
+  border-color: #D20303;
+  border-width: 2px;
+  border-radius: 5px;
+  background-color: #FF6666;
+  margin-bottom: 10px;
+  height: 40px;
+  text-align: center;
+  vertical-align: middle;
+  padding-top: 20px;
+  color: white;
+  opacity: 50%;
+  font-size: 20px;
+  font-family: 'Josefin Sans', sans-serif;
+}
+
+#confirm-chk {
+  margin-right: 5px;
+}
+
+.chk-box {
+  color: black;
+  font-family: 'Josefin Sans', sans-serif;
+  font-size: 14px;
+  letter-spacing: 1px;
 }

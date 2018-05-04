@@ -4,8 +4,8 @@ function addInfo(info) {
   var instructions = info[1];
 
   for (var i = 0; i < ingredients.length; i++) {
-    var li = $('<li class="ingredient"></li>');
-    li.html(ingredients[i].originalString);
+    console.log(ingredients[i])
+    var li = $('<li class="ingredient">' + ingredients[i].original + '</li>');
     $('#ingredient-list').append(li);
   }
 

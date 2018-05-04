@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 	<head>
 		<meta charset="utf-8" />
 		<meta name="id" content="{{id}}">
@@ -25,7 +25,6 @@
 		      <div id="search_bar">
 		        <form id='form'>
 		          <img id="search_icon" alt="search button" src="../data/images/search_icon.png"/>
-          			<label for="search_box" class="hidden">Search for ingredients, recipe names, etc.</label>
 		          <input id="search_box" type="text" placeholder="Search for ingredients, recipe names...">
 		          <input id="searchSubmitButton" type="submit" value = "Submit">
 		        </form>
@@ -47,7 +46,7 @@
 		        {{/notAuthenticated}}
 		        {{#isAuthenticated}}
 		        <div id="profileIcon">
-		          <li> <img id="profile_icon" alt="user's image" src= "../data/profile_images/{{profile}}.png" onerror="this.src='../data/images/default-user.png'"/></li>
+		          <li> <img id="profile_icon" alt="user's image" src="../data/images/default-user.png"/></li>
 		        </div>
 		        <div id="logout" class="text-button">
 		          <li><a href="/logout">Log Out</a></li>
@@ -62,11 +61,14 @@
 
 
 		<div id="other-stuff">
-			<div id="collect-recipe">COLLECT RECIPE
+			{{#isAuthenticated}}
+			<div id="collect-recipe">
+				<button id="add-fav">ADD RECIPE TO FAVORITES</button>
 			</div>
+			{{/isAuthenticated}}
 			<h1 id="recipe-name">{{RecipeName}}</h1>
 			<div id="recipe-image">
-				<img alt="recipe's image" src="{{Img}}" />
+				<img src="{{Img}}" />
 			</div>
 			<div id="quick-info">
 				<div class="info">
@@ -102,5 +104,18 @@
 				</div>
 			</div>
 		</div>
+	<script>
+		var fav = document.getElementById("add-fav");
+
+		fav.onclick = function() {
+			$.post('/fav/{{id}}', {image: "{{Img}}}", title: "{{RecipeName}}"}, function(err, res) {
+				if (err) {
+					console.log(err);
+				} else {
+					console.log(res);
+				}
+			});
+		}
+	</script>
 	</body>
 </html>

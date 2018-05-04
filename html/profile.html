@@ -3,6 +3,7 @@
 <head>
 
 	<meta charset="utf-8">
+	<meta name="user" content="{{user_id}}">
 
  	<script src="https://code.jquery.com/jquery-1.10.2.js"></script>
 
@@ -25,7 +26,7 @@
 		<div id="nav_bar_container">
 		            <div id="nav_bar">
 		              <div id="logo" class="weather">
-		                MealMaker 
+		                MealMaker
 		              </div>
 
 		      <div id="search_bar">
@@ -70,14 +71,14 @@
         <div id="edits" >
         	<a id="edit_text">Edit Profile</a>
 
-        	                                        
+
 
         	<img id="edit_icon" alt="edit profile image" src="../data/images/edit_icon.png"/>
         </div>
 
 		<h1 id="profile_title"> {{user}}'s Profile</h1>
-		
-	
+
+
 
 		<div id="full_cover">
 			<div id="cropped"><img id="profile_photo" alt="user's image" src= "../data/profile_images/{{profile}}.png" onerror="this.src='../data/images/default-user.png'"/>
@@ -89,12 +90,12 @@
 
 					  	<input type="file" name="imgUploader" multiple />
 					  	</div>
-					
+
 					   <button class="savebtn">Save</button>
-				
-			        
-		    		</form>   
-			
+
+
+		    		</form>
+
 			</div>
 			<!-- javascript for user's image -->
 			<h2 id="last_updated"> <span id="date"> </span> </h2>
@@ -105,12 +106,12 @@
   						<button class="editbtn">Change Cover Photo</button>
 					  	<input type="file" name="imgUploader" multiple />
 					  	</div>
-					
+
 					   <button class="savebtn">Save</button>
-				
-			        
-		    		</form>   
-			
+
+
+		    		</form>
+
 			</div>
 
 			<!-- javascript for date -->
@@ -121,77 +122,96 @@
         <fortyPX></fortyPX>
 
 
-		<div id="dietary">
-			<h4 id="diet_title"> Dietary Preferences </h4>
+				<div id="dietary">
+					<h4 id="diet_title"> Dietary Preferences </h4>
 
 
 
-			<img  class="editing" id="add_icon" alt="add dietary preferences" src="../data/images/add_icon.png">
+					<img id="edit_icon" onclick="toggleEdit()" alt="edit dietary preferences" src="../data/images/edit_icon.png">
 
-            <twentyPX></twentyPX>
+								<twentyPX></twentyPX>
 
-			<!-- javascript for adding more dietary options -->
+					<!-- javascript for adding more dietary options -->
+					<div id="chosen-preferences">
+						<ul id="chosen-list"></ul>
+						<div id="established-intolerances">
+						</div>
+					</div>
+					<div id="edit-preferences">
+						<ul id="edit-list">
+							<li>Pescetarian
+								<img id="close-icon" onclick="removeDiet('pesc')" src="../data/images/close_icon.png">
+								<img id="add-icon" onclick="submitDiet('pesc')" src="../data/images/add_icon.png">
+							</li>
+							<li>Lacto Vegetarian
+								<img id="close-icon" onclick="removeDiet('lactoveg')" src="../data/images/close_icon.png">
+								<img id="add-icon" onclick="submitDiet('lactoveg')" src="../data/images/add_icon.png">
+							</li>
+							<li>Ovo Vegetarian
+								<img id="close-icon" onclick="removeDiet('ovoveg')" src="../data/images/close_icon.png">
+								<img id="add-icon" onclick="submitDiet('ovoveg')" src="../data/images/add_icon.png">
+							</li>
+							<li>Vegetarian
+								<img id="close-icon" onclick="removeDiet('vegetarian')" src="../data/images/close_icon.png">
+								<img id="add-icon" onclick="submitDiet('vegetarian')" src="../data/images/add_icon.png">
+							</li>
+							<li>Vegan
+								<img id="close-icon" onclick="removeDiet('vegan')" src="../data/images/close_icon.png">
+								<img id="add-icon" onclick="submitDiet('vegan')" src="../data/images/add_icon.png">
+							</li>
+							<li>Paleo
+								<img id="close-icon" onclick="removeDiet('paleo')" src="../data/images/close_icon.png">
+								<img id="add-icon" onclick="submitDiet('paleo')" src="../data/images/add_icon.png">
+							</li>
+							<li>Primal
+								<img id="close-icon" onclick="removeDiet('primal')" src="../data/images/close_icon.png">
+								<img id="add-icon" onclick="submitDiet('primal')" src="../data/images/add_icon.png">
+							</li>
+						</ul>
+						<div id="intolerances">
+							<input type="text" id="intolerances-field" placeholder="Intolerances" />
+							<button id="intolerances-submit" onclick="submitIntolerances()">submit</button>
+						</div>
+					</div>
 
-            <div style="position: relative;">
-			<div class="diet_type"> Dairy Free  
-				<img  class="editing" id="close_icon" alt="remove this dietary preference" src="../data/images/close_icon.png"/>
-			</div>
 
-            <div class="diet_type"> Nut Allergy
-            <img  class="editing" id="close_icon" alt="remove this dietary preference" src="../data/images/close_icon.png"/> </div>
-            <div class="diet_type"> Seafood Hatred 
-            	<img  class="editing" id="close_icon" alt="remove this dietary preference" src="../data/images/close_icon.png"/>
-            </div>
-            </div>
+				</div>
 
+						<fortyPX></fortyPX>
 
-		</div>
+				<div id="favorites">
 
-        <fortyPX></fortyPX>
+						<h4 id="fav_title"> Favorite Dishes</h4>
 
-		<div id="favorites">
-
-				<h4 id="fav_title"> Favorite Dishes</h4>
-				<img id="add_icon"  class="editing" alt="add favorite dish" src="../data/images/add_icon.png">
-
-			<!-- javascript for favorite dish info  -->
-
-		</div>
-        </div>
+					<!-- javascript for favorite dish info  -->
+					<ul id="fav_list">
+					</ul>
+				</div>
+						</div>
 
         <script>
 
-        		// figuring out date info
-        	const monthNames = [ "January", "February", "March", "April", "May", "June",
-		  "July", "August", "September", "October", "November", "December"
-		];
 
-		const compliments =["You look great day!", "Hope you are enjoying your day!", "What a great time to make a meal!", "Cooking is an art.", "When cooking, go by your own taste.", "Isn't food just the best!", "Eating with friends is time well spent", "If there's a whisk, there's a way.", "People who love to eat are always the best people.", "Nothing brings people together like good food.", "Worries go down better with soup.", "Good food is good mood.", "Good food is wise medicine.", "Life is a combination of passion + pasta", "Breakfast is the most important meal of the day!", "Life is uncertain; eat dessert first!" ];
-        	
+
+
 
         	$(window).resize(function() {
 				if($(window).width() <= 650){
 					alert("Please enlargen your browser!");
 				}
 			});
-        	$(document).ready(function() {
-        		var comp = compliments[Math.floor(Math.random()*compliments.length)];
 
-				$(date).text(comp);
-
-        	});
-        	
 
         	var showedits=	document.getElementsByClassName("editing");
 
         	var edittext = document.getElementById("edit_text");
         	var forms = document.getElementById("frmUploader");
-        	
+
 				var date = 	document.getElementById("date");
 
 			$("#edits").click(function(){
 
-				
+
 				if($(edittext).text() === "Edit Profile"){
 					forms.style.display = 'block';
 					for (var i=0; i<showedits.length;i++){
@@ -206,30 +226,11 @@
 	    				showedits[i].style.display='none';
 					}
 					$(edittext).text( "Edit Profile");
-				
-				// figuring out date storage
-					var today = new Date();
-					var dd = today.getDate();
-					var mm = today.getMonth()+1; 
-
-					var yyyy = today.getFullYear();
-					if(dd<10){
-					    dd='0'+dd;
-					} 
-					if(mm<10){
-					    mm='0'+mm;
-					} 
-					var today = monthNames[today.getMonth()]+ ' ' +dd+', '+yyyy;
-					// end of figuring out date storage
-
-					var comp = compliments[Math.floor(Math.random()*compliments.length)];
-
-				$(date).text(comp);
 
 
 				}
 
-				
+
 			});
         </script>
 

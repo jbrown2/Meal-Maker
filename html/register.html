@@ -23,48 +23,49 @@
   <sixtyPX></sixtyPX>
   <loginH style="color:black;">Sign Up for Meal Maker</loginH>
   <twentyPX></twentyPX>
+  <div id="errors">
+    {{#badinput}}
+      {{#errors}}
+        <div class="error-msg">{{msg}}</div>
+      {{/errors}}
+    {{/badinput}}
+  </div>
+  <twentyPx></twentyPX>
   <regtext>Create Your Account</regtext>
   <fortyPX></fortyPX>
 
+  <form id="create-account" action="/register" method="post">
+    <textBub class="input-box">
+        <input id="register-email" name="username" type="text" class="input-textbox" placeholder="Username">
 
-  <textBub class="input-box">
-    <label for="register-email" class="hidden"> Create a Username: </label>
-      <input id="register-email" class="input-textbox" placeholder="Username">
+    </textBub>
+    <twentyPX></twentyPX>
+    <textBub class="input-box">
 
-  </textBub>
-  <twentyPX></twentyPX>
-  <textBub class="input-box">
-    <label for="register-password" class="hidden"> Create a Password: </label>
-      <input id="register-password" class="input-textbox" type="password" placeholder="Password">
+        <input id="register-password" name="password" type="password" class="input-textbox" placeholder="Password">
 
-  </textBub>
+    </textBub>
 
-  <twentyPX></twentyPX>
-  <textBub class="input-box">
-    <label for="register-confirm-password" class="hidden"> Enter your password again to confirm</label>
-      <input id="register-confirm-password" class="input-textbox" type="password" placeholder="Confirm Password">
+    <twentyPX></twentyPX>
+    <textBub class="input-box">
 
-  </textBub>
+        <input id="register-confirm-password" name="confirmPassword" type="password" class="input-textbox" placeholder="Confirm Password">
 
-  <twentyPX></twentyPX>
-  <div class="chk-box">
-    <label for="confirm-chk" class="hidden"> Click to agree with Terms of Service </label>
-      <input id="confirm-chk" type="checkbox">
-      <regtext style="color:#979797">I agree to the Terms of Service</regtext>
-  </div>
-  <twentyPX></twentyPX>
+    </textBub>
+
+    <twentyPX></twentyPX>
+    <div class="chk-box">
+        <input id="confirm-chk" name="terms" type="checkbox" />I agree to Terms and Conditions
+    </div>
+    <twentyPX></twentyPX>
 
 
-  <textBub id="submit-parent" class="submit-box">
-      <regtext class="white-text"></regtext>
-      <button id="register-submit" class="submit-button">
+    <textBub id="submit-parent" class="submit-box">
 
-      </button>
+        <input id="register-submit" type="submit" value="Create Account"/>
 
-      <div class="generic-button btn-hover"></div>
-      <regtext class="white-text">Create Account</regtext>
-
-  </textBub>
+    </textBub>
+  </form>
   <fortyPX></fortyPX>
   <div class="or-box">
       <div style="flex: 1">
@@ -97,12 +98,13 @@
 </div>
 
 <script>
+
 var login = document.getElementById("login");
 
 login.onclick = function() {
   window.location.assign('/login');
 }
-
+/*
 var register = document.getElementById("register-submit");
 
 register.onclick = function() {
@@ -120,7 +122,7 @@ register.onclick = function() {
   } else {
     window.alert('Must agree to Terms');
   }
-}
+}*/
 </script>
 </body>
 </html>
